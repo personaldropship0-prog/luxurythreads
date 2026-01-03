@@ -2,67 +2,73 @@
 <html lang="it">
 <head>
   <meta charset="UTF-8">
-  <title>Luxury Thread</title>
+  <title>Luxury Thread | Exclusive Fashion</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<div class="bg"></div>
+<div class="bg-body"></div>
 
-<header class="topbar">
+<header class="topbar marble-texture">
+  <div class="marble-overlay"></div>
   <div class="brand" onclick="goHome()">
     <div class="logo-wrapper">
-      <img src="img/logo.png" alt="Luxury Thread Logo">
+      <img src="https://ui-avatars.com/api/?name=L+T&background=000&color=d6c9a5&font-size=0.4" alt="Luxury Thread Logo">
     </div>
     <span class="brand-name">Luxury Thread</span>
   </div>
 
   <div class="search-box">
-    <input id="searchInput" type="text" placeholder="Cerca prodotto o brand">
-    <button onclick="searchProduct()">Cerca</button>
+    <input id="searchInput" type="text" placeholder="Cerca prodotto o brand...">
+    <button onclick="searchProduct()">CERCA</button>
   </div>
 </header>
 
-<section class="hero" id="hero">
-  <h1 class="title-3d">LUXURY<br>THREAD</h1>
-  <p class="subtitle">Curated fashion · On-demand sourcing</p>
+<section class="hero marble-texture" id="hero">
+  <div class="marble-overlay"></div>
+  <div class="hero-content">
+    <h1 class="title-3d">LUXURY<br>THREAD</h1>
+    <p class="subtitle">Curated fashion · On-demand sourcing</p>
+  </div>
 </section>
 
 <nav class="filters" id="filters">
-  <button onclick="filterProducts('all')">Tutti</button>
+  <button onclick="filterProducts('all')" class="active">Tutti</button>
   <button onclick="filterProducts('scarpe')">Scarpe</button>
   <button onclick="filterProducts('maglie')">Maglie</button>
   <button onclick="filterProducts('pantaloni')">Pantaloni</button>
+  <button onclick="filterProducts('accessori')">Accessori</button>
 </nav>
 
 <section id="products" class="products"></section>
 
 <section id="search-results" class="search-section">
   <div class="search-card">
-    <h2 id="search-title"></h2>
+    <h2 id="search-title" style="margin-bottom:30px;"></h2>
     <div id="results" class="products"></div>
 
     <div id="request-box" class="request-box">
-      <h3>Non trovi quello che cerchi?</h3>
+      <h3>Personal Request Service</h3>
+      <p style="color:#888; font-size:0.9rem;">Il nostro team di sourcing troverà il capo per te.</p>
       <input id="requestInput" placeholder="Nome prodotto">
-      <textarea id="requestNote" placeholder="Brand, taglia, colore..."></textarea>
-      <button onclick="showRequestPopup()">Invia richiesta</button>
+      <textarea id="requestNote" placeholder="Brand, taglia, colore, anno..."></textarea>
+      <button onclick="showRequestPopup()">INVIA RICHIESTA</button>
       <button class="back" onclick="goHome()">← Torna alla Home</button>
     </div>
   </div>
 </section>
 
 <section class="contact">
-  <h2>Contattaci</h2>
+  <h2>Private Client Services</h2>
   <a class="contact-btn" href="https://ig.me/m/luxury.thread_" target="_blank">
-    @luxury.thread_
+    Contatta su Instagram
   </a>
 </section>
 
 <footer>
-  © 2026 Luxury Thread
+  © 2026 Luxury Thread · Milan · Paris · Tokyo
 </footer>
 
 <div id="popup" class="popup">
@@ -71,6 +77,22 @@
     <p id="popup-text"></p>
     <button onclick="copyAndOpenInstagram()">Copia e apri Instagram</button>
     <button class="back" onclick="closePopup()">Chiudi</button>
+  </div>
+</div>
+
+<div id="product-modal" class="product-modal">
+  <div class="modal-container">
+    <button class="modal-close" onclick="closeProductModal()">×</button>
+    <div class="modal-image">
+      <img id="modal-img-src" src="" alt="">
+    </div>
+    <div class="modal-details">
+      <span id="modal-category" class="modal-category">Categoria</span>
+      <h2 id="modal-title" class="modal-title">Titolo Prodotto</h2>
+      <p id="modal-desc" class="modal-desc">Descrizione</p>
+      <div id="modal-price" class="modal-price">€0.00</div>
+      <button class="buy-btn" onclick="contactForProduct()">Acquista / Info</button>
+    </div>
   </div>
 </div>
 
