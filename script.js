@@ -8,7 +8,7 @@ const products = [
     { id: 5, name: "Off-White Industrial Belt", category: "accessories", price: 220, img: "https://images.unsplash.com/photo-1505022610485-0249ba5b3675?auto=format&fit=crop&w=800&q=80", desc: "Gialla iconica con cuciture rosse." },
 
     // --- CINTURE (6 Prodotti) ---
-    { id: 101, name: "Gucci GG Marmont", category: "belts", price: 395, img: "https://images.unsplash.com/photo-1624223032773-772eb0462052?auto=format&fit=crop&w=800&q=80", desc: "Pelle nera con fibbia ottone anticato." },
+    { id: 101, name: "hermes", category: "belts", price: 35, img: "https://si.geilicdn.com/pcitem1799783535-47d90000018f7ba592f30a23057e-unadjust_800_800.png", desc: "Pelle nera con fibbia ottone anticato." },
     { id: 102, name: "Hermès H Belt Kit", category: "belts", price: 780, img: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=800&q=80", desc: "Reversibile Black/Gold. Fibbia spazzolata." },
     { id: 103, name: "LV Initiales Damier", category: "belts", price: 450, img: "https://images.unsplash.com/photo-1515955656352-a1fa3ffcd111?auto=format&fit=crop&w=800&q=80", desc: "Tela Damier Graphite. Classica." },
     { id: 104, name: "Ferragamo Gancini", category: "belts", price: 350, img: "https://images.unsplash.com/photo-1624222247344-550fb60583dc?auto=format&fit=crop&w=800&q=80", desc: "Reversibile. Fibbia iconica Gancini." },
@@ -253,3 +253,4 @@ function openReviewsModal() { document.getElementById('reviews-modal').style.dis
 function closeReviewsModal() { document.getElementById('reviews-modal').style.display = 'none'; }
 
 function toggleTheme() { document.body.classList.toggle('dark-mode'); }
+
