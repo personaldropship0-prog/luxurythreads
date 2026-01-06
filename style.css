@@ -1,132 +1,52 @@
-/* RESET & BASE */
-* { margin: 0; padding: 0; box-sizing: border-box; }
-body {
-    font-family: 'Roboto', sans-serif;
-    background-color: #f5f5f5; /* Grigio chiaro pulito */
-    color: #000;
-    padding-top: 100px; /* Spazio per header fisso */
-    padding-bottom: 50px;
+/* --- MOBILE OPTIMIZATION --- */
+@media(max-width: 768px) {
+    
+    /* Titolo più piccolo */
+    .brand-title { font-size: 32px; letter-spacing: 2px; }
+    
+    /* Layout Header Mobile */
+    .header-content { flex-wrap: nowrap; gap: 10px; } 
+    /* Nota: ho messo nowrap per tenerli sulla stessa riga se ci stanno */
+
+    .logo-slot { width: 50px; height: 50px; margin-right: 0; }
+
+    /* --- MODIFICA TASTO CERCA MOBILE --- */
+    .search-trigger-container { margin-left: auto; }
+
+    /* 1. Mostriamo la scritta anche su mobile */
+    .desktop-only { 
+        display: inline-block !important; 
+        font-size: 0.85rem; 
+        margin-left: 5px;
+        font-weight: 700;
+    }
+
+    /* 2. Rendiamo il bottone evidente (tipo "pillola") */
+    .search-trigger-btn {
+        background: rgba(255, 255, 255, 0.15); /* Sfondo semitrasparente */
+        backdrop-filter: blur(5px);
+        border: 1px solid var(--text-color);   /* Bordo visibile */
+        padding: 8px 16px;
+        border-radius: 20px;
+        color: var(--text-color);
+    }
+    
+    /* Search Overlay su mobile */
+    .search-input-wrapper input { font-size: 1.2rem; }
+    .search-brand { display: none; } /* Nasconde scritta LT SEARCH nell'overlay */
+    .search-top-row { justify-content: flex-end; }
+    .search-overlay-content { padding: 30px 5%; }
+
+    /* Layout Griglia e Spazi */
+    .spacer { height: 180px; } /* Spazio sotto l'header */
+    
+    /* Scheda Prodotto Mobile */
+    .product-detail-container { flex-direction: column; width: 95%; margin-top: 20px;}
+    .detail-image { height: 350px; border-right: none; border-bottom: var(--glass-border); }
+    .detail-info { padding: 25px; }
+    .detail-info h2 { font-size: 2.2rem; }
+    
+    /* Bottoni Fluttuanti */
+    .floating-sourcing-btn { bottom: 20px; right: 20px; padding: 8px 16px; font-size: 0.7rem; opacity: 0.9; }
+    .floating-home-btn { top: 90px; padding: 8px 16px; font-size: 0.7rem; } /* Abbassato un po' */
 }
-
-/* NEWS TICKER */
-.ticker-wrap {
-    position: fixed; top: 0; left: 0; width: 100%; height: 30px;
-    background: #000; color: #fff; z-index: 2000;
-    overflow: hidden; line-height: 30px; font-family: 'Oswald', sans-serif; font-size: 0.8rem; letter-spacing: 1px;
-}
-.ticker { white-space: nowrap; animation: ticker 20s linear infinite; display: inline-block; padding-left: 100%; }
-@keyframes ticker { 0% { transform: translate3d(0, 0, 0); } 100% { transform: translate3d(-100%, 0, 0); } }
-
-/* HEADER */
-header {
-    position: fixed; top: 30px; left: 0; width: 100%;
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid #ddd;
-    z-index: 1000;
-    padding: 15px 5%;
-}
-.header-inner { display: flex; justify-content: space-between; align-items: center; max-width: 1400px; margin: 0 auto; }
-
-.logo-container { width: 50px; height: 50px; cursor: pointer; }
-.logo-container img { width: 100%; height: 100%; object-fit: contain; }
-
-.site-title {
-    font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 1.8rem; letter-spacing: 2px;
-    text-align: center; flex-grow: 1;
-}
-
-.search-btn { cursor: pointer; padding: 5px; }
-
-/* SEARCH INPUT */
-#search-bar-container {
-    max-width: 1400px; margin: 10px auto 0; display: none; /* Nascosto default */
-}
-#search-bar-container.active { display: block; }
-#search-input {
-    width: 100%; padding: 12px; font-size: 1rem; border: 1px solid #000;
-    background: #fff; font-family: 'Oswald'; text-transform: uppercase;
-}
-
-/* LAYOUT & GRID */
-main { max-width: 1400px; margin: 0 auto; padding: 20px 5%; }
-
-.category-header { margin: 50px 0 20px; display: flex; align-items: center; gap: 15px; }
-.category-header h2 { font-family: 'Oswald'; font-size: 1.5rem; text-transform: uppercase; white-space: nowrap; }
-.category-header .line { height: 2px; background: #000; width: 100%; opacity: 0.1; }
-
-.product-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 30px;
-}
-
-/* PRODUCT CARD */
-.card {
-    background: #fff; border: 1px solid #eee;
-    transition: transform 0.2s ease; cursor: pointer;
-}
-.card:hover { transform: translateY(-5px); border-color: #000; }
-.card-img-wrap { width: 100%; aspect-ratio: 1/1; overflow: hidden; background: #f9f9f9; }
-.card-img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s; }
-.card:hover img { transform: scale(1.05); }
-
-.card-info { padding: 15px; }
-.card-title { font-family: 'Oswald'; font-size: 1rem; margin-bottom: 5px; text-transform: uppercase; }
-.card-price { font-weight: 700; color: #333; }
-
-/* FOOTER */
-footer { background: #000; color: #fff; text-align: center; padding: 40px 20px; font-family: 'Oswald'; letter-spacing: 1px; }
-
-/* === BOT WIDGET STYLES === */
-#bot-trigger {
-    position: fixed; bottom: 20px; left: 20px;
-    background: #000; color: #fff;
-    padding: 12px 25px; border-radius: 30px;
-    font-family: 'Oswald', sans-serif; font-weight: bold; cursor: pointer;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.3); z-index: 9999;
-    transition: transform 0.2s;
-    display: flex; align-items: center; gap: 8px;
-}
-#bot-trigger:hover { transform: scale(1.05); }
-
-#bot-window {
-    position: fixed; bottom: 80px; left: 20px;
-    width: 320px; background: #fff;
-    border: 2px solid #000;
-    display: none; /* Nascosto */
-    flex-direction: column;
-    z-index: 10000;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-}
-.bot-header {
-    background: #000; color: #fff; padding: 12px;
-    display: flex; justify-content: space-between; font-family: 'Oswald';
-}
-.bot-header button { background: none; border: none; color: #fff; cursor: pointer; font-size: 1.2rem; }
-
-.bot-content { padding: 20px; display: flex; flex-direction: column; gap: 15px; }
-.bot-message { font-size: 1rem; font-weight: 500; margin-bottom: 10px; }
-
-.bot-options button {
-    width: 100%; padding: 12px; margin-bottom: 8px;
-    border: 1px solid #000; background: #fff;
-    font-family: 'Oswald'; cursor: pointer; text-transform: uppercase;
-    transition: background 0.2s;
-    font-size: 0.9rem;
-}
-.bot-options button:hover { background: #000; color: #fff; }
-
-.bot-input {
-    width: 100%; padding: 10px; border: 1px solid #ccc;
-    font-family: 'Roboto'; margin-bottom: 5px;
-}
-
-/* MEDIA QUERIES MOBILE */
-@media (max-width: 768px) {
-    .product-grid { grid-template-columns: repeat(2, 1fr); gap: 15px; }
-    .site-title { font-size: 1.4rem; }
-    .category-header h2 { font-size: 1.2rem; }
-    #bot-window { width: 90%; left: 5%; }
-}
-
