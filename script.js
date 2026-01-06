@@ -1,11 +1,11 @@
 // DATABASE PRODOTTI
 const products = [
-    { id: 1, name: "Jordan 1 Retro High OG", category: "sneakers", price: 450, img: "https://images.unsplash.com/photo-1552346154-21d32810aba3?auto=format&fit=crop&w=800&q=80", desc: "Iconica silhouette Chicago colorway. Pelle premium." },
-    { id: 2, name: "Yeezy Boost 350 V2", category: "sneakers", price: 320, img: "https://images.unsplash.com/photo-1584735175315-9d5df23860e6?auto=format&fit=crop&w=800&q=80", desc: "Comfort imbattibile con tecnologia Boost." },
-    { id: 3, name: "Supreme Box Logo Hoodie", category: "hoodies", price: 800, img: "https://images.unsplash.com/photo-1571455786673-9d9d6c194f90?auto=format&fit=crop&w=800&q=80", desc: "Il classico streetwear. Heavyweight cotton." },
-    { id: 4, name: "Essentials Fear of God", category: "hoodies", price: 180, img: "https://images.unsplash.com/photo-1556906781-9a412961d28c?auto=format&fit=crop&w=800&q=80", desc: "Minimalismo di lusso. Oversized fit." },
-    { id: 5, name: "Gallery Dept. Flared Sweatpants", category: "pants", price: 450, img: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=800&q=80", desc: "Hand painted vintage wash." },
-    { id: 6, name: "Chrome Hearts Ring", category: "accessories", price: 650, img: "https://images.unsplash.com/photo-1617038224558-2834fd2d6323?auto=format&fit=crop&w=800&q=80", desc: "Argento sterling .925 lavorato a mano a LA." }
+    { id: 1, name: "Jordan 1 Retro High OG", category: "sneakers", price: 450, img: "https://si.geilicdn.com/open1778275904-1234478995-5fc200000189a4eead4f0a8115b5_800_800.jpg", desc: "Iconica silhouette Chicago colorway. Pelle premium." },
+    { id: 2, name: "Yeezy Boost 350 V2", category: "sneakers", price: 320, img: "https://si.geilicdn.com/wdseller169153426-4802000001872c2910950a2313df_2560_1920.jpg", desc: "Comfort imbattibile con tecnologia Boost." },
+    { id: 3, name: "Supreme Box Logo Hoodie", category: "hoodies", price: 800, img: "https://si.geilicdn.com/open1687670541-252808396-0b160000019a521ee8a30a231226_800_800.jpg", desc: "Il classico streetwear. Heavyweight cotton." },
+    { id: 4, name: "Essentials Fear of God", category: "hoodies", price: 180, img: "https://www.francocuoio.it/wp-content/uploads/2019/10/Hermes-Franco-Cuoio-Web.jpg", desc: "Minimalismo di lusso. Oversized fit." },
+    { id: 5, name: "Gallery Dept. Flared Sweatpants", category: "pants", price: 450, img: "https://si.geilicdn.com/open1610848089-1610848089-491400000192c2ff72390a8115b5_1200_900.jpg", desc: "Hand painted vintage wash." },
+    { id: 6, name: "Chrome Hearts Ring", category: "accessories", price: 650, img: "https://si.geilicdn.com/open1848188377-1848188377-605e00000192c797c77e0a22d234-unadjust_800_800.gif", desc: "Argento sterling .925 lavorato a mano a LA." }
 ];
 
 // INIT
@@ -171,3 +171,4 @@ function openReviewsModal() { document.getElementById('reviews-modal').style.dis
 function closeReviewsModal() { document.getElementById('reviews-modal').style.display = 'none'; }
 
 function toggleTheme() { document.body.classList.toggle('dark-mode'); }
+
