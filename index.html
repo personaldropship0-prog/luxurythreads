@@ -1,206 +1,193 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8">
-  <title>Luxury Thread | Ultimate Edition</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>LUXURY THREAD | Official</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Oswald:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
 <div class="page-wrapper">
 
-  <div class="news-ticker">
-    <div class="ticker-content">
-      WORLDWIDE SHIPPING ✈ · AUTHENTIC GUARANTEED 100% · SOURCING SERVICE AVAILABLE · DM FOR INQUIRIES · MILAN BASED · TOKYO CONNECTIONS · 
-      WORLDWIDE SHIPPING ✈ · AUTHENTIC GUARANTEED 100% · SOURCING SERVICE AVAILABLE · DM FOR INQUIRIES · 
-    </div>
-  </div>
-
-  <div id="search-overlay" class="search-overlay">
-    <div class="search-overlay-content">
-      
-      <div class="search-top-row">
-        <span class="search-brand">LT SEARCH</span>
-        <button class="close-search-btn" onclick="closeSearchOverlay()">ANNULLA</button>
-      </div>
-
-      <div class="search-input-wrapper">
-        <button class="search-icon-btn" onclick="performSearch()">🔍</button>
-        <input type="text" id="searchInput" placeholder="Cerca sneakers, brand..." autocomplete="off">
-      </div>
-
-      <div class="quick-links">
-        <span>Popolari:</span>
-        <a onclick="quickSearch('Jordan')">Jordan</a>
-        <a onclick="quickSearch('Yeezy')">Yeezy</a>
-        <a onclick="quickSearch('Hoodie')">Hoodie</a>
-        <a onclick="quickSearch('Chrome Hearts')">Chrome Hearts</a>
-      </div>
-
-    </div>
-    <div class="search-backdrop" onclick="closeSearchOverlay()"></div>
-  </div>
-
-  <header class="main-header">
-    <div class="header-content">
-      
-      <div class="logo-slot" onclick="goHome()">
-        <img src="img/logo.png" alt="LT" onerror="this.style.display='none'; document.querySelector('.brand-fallback').style.display='flex'">
-        <span class="brand-fallback" style="display:none">LT</span>
-      </div>
-      
-      <h1 class="brand-title" onclick="goHome()">LUXURY THREAD</h1>
-
-      <div class="search-trigger-container">
-        <button class="search-trigger-btn" onclick="openSearchOverlay()">
-            🔍 <span class="desktop-only">CERCA</span>
-        </button>
-      </div>
-
-    </div>
-  </header>
-
-  <main id="home-view" class="content-area">
-    <div class="spacer"></div>
-    
-    <nav class="filters">
-      <button onclick="filterProducts('all')" class="active">ALL</button>
-      <button onclick="filterProducts('sneakers')">SNEAKERS</button>
-      <button onclick="filterProducts('hoodies')">HOODIES</button>
-      <button onclick="filterProducts('pants')">PANTS</button>
-      <button onclick="filterProducts('accessories')">ACCESSORIES</button>
-    </nav>
-
-    <section id="products-grid" class="product-grid"></section>
-
-    <div id="no-results" class="no-results-box" style="display:none;">
-      <div class="no-results-content">
-        <h2>PRODOTTO NON TROVATO</h2>
-        <p>Il nostro team di sourcing può trovarlo per te.</p>
-        <button class="buy-btn main-btn" onclick="openSourcingModal()">RICHIESTA SOURCING</button>
-      </div>
-    </div>
-  </main>
-
-
-  <section id="single-product-page" class="single-product-view content-area">
-    <div class="spacer"></div>
-    
-    <div class="product-top-bar">
-      <button class="close-view-btn" onclick="goBackToHome()">✕ TORNA ALLA HOME</button>
-    </div>
-
-    <div class="product-detail-container">
-      <div class="detail-image">
-        <img id="detail-img" src="" alt="">
-      </div>
-      <div class="detail-info">
-        <div class="badges-row">
-            <span id="detail-category" class="badge">CATEGORY</span>
-            <span class="verified-badge">✓ AUTHENTIC VERIFIED</span>
+    <div class="news-ticker">
+        <div class="ticker-content">
+            WORLDWIDE SHIPPING ✈ · AUTHENTIC GUARANTEED 100% · SOURCING SERVICE AVAILABLE · DM FOR INQUIRIES · MILAN BASED · TOKYO CONNECTIONS · 
+            WORLDWIDE SHIPPING ✈ · AUTHENTIC GUARANTEED 100% · SOURCING SERVICE AVAILABLE · DM FOR INQUIRIES · 
         </div>
+    </div>
+
+    <div id="search-overlay" class="search-overlay">
+        <div class="search-overlay-content">
+            <div class="search-top-row">
+                <span class="search-brand">LT SEARCH</span>
+                <button class="close-search-btn" onclick="closeSearchOverlay()">CHIUDI</button>
+            </div>
+            <div class="search-input-wrapper">
+                <span class="search-icon">🔍</span>
+                <input type="text" id="searchInput" placeholder="Cerca brand, modello..." autocomplete="off">
+            </div>
+            <div class="quick-links">
+                <span>Trending:</span>
+                <a onclick="quickSearch('Jordan')">Jordan</a>
+                <a onclick="quickSearch('Yeezy')">Yeezy</a>
+                <a onclick="quickSearch('Hoodie')">Hoodie</a>
+                <a onclick="quickSearch('Chrome Hearts')">Chrome Hearts</a>
+            </div>
+        </div>
+        <div class="search-backdrop" onclick="closeSearchOverlay()"></div>
+    </div>
+
+    <header class="main-header">
+        <div class="header-content">
+            <div class="header-left" onclick="goHome()">
+                <div class="logo-slot">
+                    <img src="img/logo.png" alt="LT" onerror="this.style.display='none';">
+                </div>
+            </div>
+            
+            <h1 class="brand-title" onclick="goHome()">LUXURY THREAD</h1>
+
+            <div class="header-right">
+                <button class="search-trigger-btn" onclick="openSearchOverlay()">
+                    CERCA
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main id="home-view" class="content-area">
+        <div class="spacer"></div>
         
-        <h2 id="detail-title">PRODUCT NAME</h2>
-        <p id="detail-desc">Description goes here.</p>
-        <div id="detail-price" class="price-tag">€000</div>
+        <nav class="filters">
+            <button onclick="filterProducts('all')" class="active">TUTTO</button>
+            <button onclick="filterProducts('sneakers')">SNEAKERS</button>
+            <button onclick="filterProducts('hoodies')">HOODIES</button>
+            <button onclick="filterProducts('pants')">PANTS</button>
+            <button onclick="filterProducts('accessories')">ACCESSORIES</button>
+        </nav>
+
+        <section id="products-grid" class="product-grid"></section>
+
+        <div id="no-results" class="no-results-box" style="display:none;">
+            <div class="no-results-content">
+                <h2>NESSUN RISULTATO</h2>
+                <p>Non trovi quello che cerchi? Usa il nostro servizio VIP.</p>
+                <button class="buy-btn main-btn" onclick="openSourcingModal()">RICHIESTA SOURCING</button>
+            </div>
+        </div>
+    </main>
+
+    <section id="single-product-page" class="single-product-view content-area">
+        <div class="spacer"></div>
         
-        <div class="trust-icons-text">
-            <span>📦 Double Box Shipping</span> • <span>🔒 Secure Payment (PayPal)</span>
+        <div class="product-top-bar">
+            <button class="back-link" onclick="goBackToHome()">← TORNA ALLA HOME</button>
         </div>
 
-        <div class="action-buttons">
-          <button class="buy-btn main-btn" onclick="contactForProduct('buy')">ACQUISTA ORA (DM)</button>
-          <button class="buy-btn sec-btn" onclick="contactForProduct('info')">INFO PRODOTTO</button>
-        </div>
-      </div>
-    </div>
-  </section>
+        <div class="product-detail-container">
+            <div class="detail-image">
+                <img id="detail-img" src="" alt="">
+            </div>
+            <div class="detail-info">
+                <div class="badges-row">
+                    <span id="detail-category" class="badge">CATEGORY</span>
+                    <span class="verified-badge">AUTHENTIC 100%</span>
+                </div>
+                
+                <h2 id="detail-title">PRODUCT NAME</h2>
+                <div id="detail-price" class="price-tag">€000</div>
+                
+                <div class="divider"></div>
+                
+                <p id="detail-desc">Description goes here.</p>
+                
+                <div class="trust-info">
+                    <p>📦 Spedizione Double Box</p>
+                    <p>🔒 Pagamento Sicuro (PayPal/Stripe)</p>
+                </div>
 
-  <footer>
-    <div class="footer-content">
-      <p>© 2026 LUXURY THREAD · MILAN · TOKYO</p>
-      <a href="https://ig.me/m/luxury.thread_" target="_blank" class="contact-link">INSTAGRAM DM</a>
-      
-      <div class="footer-bottom-row">
-        <button id="footer-theme-btn" onclick="toggleTheme()" title="Cambia Tema">🌙 / ☀️</button>
-        <span class="footer-divider">|</span>
-        <span class="reviews-link" onclick="openReviewsModal()">REVIEWS (5.0 ★)</span>
-      </div>
-    </div>
-  </footer>
+                <div class="action-buttons">
+                    <button class="buy-btn main-btn" onclick="contactForProduct('buy')">ACQUISTA (DM)</button>
+                    <button class="buy-btn sec-btn" onclick="contactForProduct('info')">INFO</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">LUXURY THREAD</div>
+            <p class="footer-loc">MILANO — TOKYO</p>
+            <div class="footer-links">
+                <a href="https://instagram.com/luxury.thread_" target="_blank">INSTAGRAM</a>
+                <span class="sep">|</span>
+                <a onclick="openReviewsModal()">RECENSIONI</a>
+                <span class="sep">|</span>
+                <a onclick="toggleTheme()" id="theme-toggle">DARK MODE</a>
+            </div>
+            <p class="copyright">© 2026 TUTTI I DIRITTI RISERVATI</p>
+        </div>
+    </footer>
 
 </div>
 
 <div class="floating-sourcing-btn" onclick="openSourcingModal()">
-    <span>💎 VIP REQUEST</span>
+    <span>💎 SOURCING</span>
 </div>
 
 <div class="floating-home-btn" onclick="scrollToTop()">
-    <span>🏠 HOME</span>
+    <span>↑</span>
 </div>
 
 <div id="sourcing-modal" class="popup-overlay">
-  <div class="popup-box sourcing-box">
-    <div class="popup-header">
-      <h3>VIP REQUEST</h3>
-      <div class="header-line"></div>
+    <div class="popup-box sourcing-box">
+        <div class="popup-header">
+            <h3>VIP SOURCING</h3>
+            <p>Non trovi il prodotto? Lo cerchiamo noi.</p>
+        </div>
+        <div class="input-group">
+            <input type="text" id="src-model" placeholder="MODELLO">
+        </div>
+        <div class="input-group">
+            <input type="text" id="src-size" placeholder="TAGLIA">
+        </div>
+        <div class="popup-actions">
+            <button class="buy-btn main-btn" onclick="sendSourcingRequest()">INVIA RICHIESTA</button>
+            <button class="close-text-btn" onclick="closeSourcingModal()">CHIUDI</button>
+        </div>
     </div>
-    <p style="font-size: 0.85rem; margin-bottom: 25px; opacity: 0.7;">Servizio esclusivo di ricerca prodotti.</p>
-    
-    <div class="input-group">
-      <input type="text" id="src-model" placeholder=" " class="modal-input-line">
-      <label>MODELLO</label>
-    </div>
-    <div class="input-group">
-      <input type="text" id="src-size" placeholder=" " class="modal-input-line">
-      <label>TAGLIA</label>
-    </div>
-    
-    <div class="popup-actions">
-      <button class="buy-btn main-btn" onclick="sendSourcingRequest()">INVIA RICHIESTA</button>
-      <button class="buy-btn sec-btn-small" onclick="closeSourcingModal()">CHIUDI</button>
-    </div>
-  </div>
 </div>
 
 <div id="reviews-modal" class="popup-overlay">
-  <div class="popup-box reviews-box">
-    <div class="popup-header">
-      <h3>CLIENT FEEDBACK</h3>
-      <div class="header-line"></div>
+    <div class="popup-box reviews-box">
+        <div class="popup-header">
+            <h3>FEEDBACK CLIENTI</h3>
+        </div>
+        <div class="reviews-list">
+            <div class="review-item">
+                <div class="stars">★★★★★</div>
+                <p>"Prodotto arrivato in condizioni perfette. Servizio impeccabile."</p>
+                <span class="review-author">@matteo.g</span>
+            </div>
+            <div class="review-item">
+                <div class="stars">★★★★★</div>
+                <p>"Cercavo questa hoodie ovunque. Grandi!"</p>
+                <span class="review-author">@luca_snkrs</span>
+            </div>
+            <div class="review-item">
+                <div class="stars">★★★★★</div>
+                <p>"Spedizione rapidissima su Milano."</p>
+                <span class="review-author">@alessia.v</span>
+            </div>
+        </div>
+        <button class="close-text-btn" onclick="closeReviewsModal()">CHIUDI</button>
     </div>
-    
-    <div class="reviews-list">
-      <div class="review-item">
-        <div class="stars">★★★★★</div>
-        <p>"Ero scettico sull'acquisto via DM, ma le scarpe sono passate subito su CheckCheck. Autenticità 100% confermata."</p>
-        <span class="review-author">— @matteo.g (Verified Buyer)</span>
-      </div>
-      <div class="review-item">
-        <div class="stars">★★★★★</div>
-        <p>"Spedizione a Roma in meno di 24h. Pacco double-boxed arrivato immacolato."</p>
-        <span class="review-author">— @luca_sneakers</span>
-      </div>
-      <div class="review-item">
-        <div class="stars">★★★★★</div>
-        <p>"Cercavo questa hoodie da mesi. Il team di Luxury Thread me l'ha trovata in Giappone in 2 giorni."</p>
-        <span class="review-author">— @alessia.vntg</span>
-      </div>
-    </div>
-
-    <button class="buy-btn sec-btn-small" onclick="closeReviewsModal()">CHIUDI</button>
-  </div>
-</div>
-
-<div id="popup" class="popup-overlay">
-  <div class="popup-box">
-    <h3>MESSAGGIO PRONTO</h3>
-    <p id="popup-text"></p>
-    <button class="buy-btn main-btn" onclick="openInstagram()">VAI SU INSTAGRAM</button>
-    <button class="buy-btn sec-btn" onclick="closePopup()">CHIUDI</button>
-  </div>
 </div>
 
 <script src="script.js"></script>
