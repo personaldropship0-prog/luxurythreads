@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>LUXURY THREAD | Official</title>
+    <title>LUXURY THREAD | Ultimate Edition</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -26,18 +26,18 @@
         <div class="search-overlay-content">
             <div class="search-top-row">
                 <span class="search-brand">LT SEARCH</span>
-                <button class="close-search-btn" onclick="closeSearchOverlay()">CHIUDI</button>
+                <button class="close-search-btn" onclick="closeSearchOverlay()">CHIUDI [X]</button>
             </div>
             <div class="search-input-wrapper">
-                <span class="search-icon">🔍</span>
-                <input type="text" id="searchInput" placeholder="Cerca brand, modello..." autocomplete="off">
+                <span class="search-icon">SEARCH</span>
+                <input type="text" id="searchInput" placeholder="DIGITA QUI..." autocomplete="off">
             </div>
             <div class="quick-links">
-                <span>Trending:</span>
-                <a onclick="quickSearch('Jordan')">Jordan</a>
-                <a onclick="quickSearch('Yeezy')">Yeezy</a>
-                <a onclick="quickSearch('Hoodie')">Hoodie</a>
-                <a onclick="quickSearch('Chrome Hearts')">Chrome Hearts</a>
+                <span>TRENDING:</span>
+                <a onclick="quickSearch('Jordan')">JORDAN</a>
+                <a onclick="quickSearch('Yeezy')">YEEZY</a>
+                <a onclick="quickSearch('Hoodie')">HOODIE</a>
+                <a onclick="quickSearch('Chrome Hearts')">CHROME HEARTS</a>
             </div>
         </div>
         <div class="search-backdrop" onclick="closeSearchOverlay()"></div>
@@ -77,7 +77,7 @@
         <div id="no-results" class="no-results-box" style="display:none;">
             <div class="no-results-content">
                 <h2>NESSUN RISULTATO</h2>
-                <p>Non trovi quello che cerchi? Usa il nostro servizio VIP.</p>
+                <p>Usa il servizio VIP Sourcing per trovare il tuo prodotto.</p>
                 <button class="buy-btn main-btn" onclick="openSourcingModal()">RICHIESTA SOURCING</button>
             </div>
         </div>
@@ -87,7 +87,7 @@
         <div class="spacer"></div>
         
         <div class="product-top-bar">
-            <button class="back-link" onclick="goBackToHome()">← TORNA ALLA HOME</button>
+            <button class="back-link" onclick="goBackToHome()">&lt; TORNA ALLA HOME</button>
         </div>
 
         <div class="product-detail-container">
@@ -108,13 +108,13 @@
                 <p id="detail-desc">Description goes here.</p>
                 
                 <div class="trust-info">
-                    <p>📦 Spedizione Double Box</p>
-                    <p>🔒 Pagamento Sicuro (PayPal/Stripe)</p>
+                    <span>📦 Double Box Shipping</span>
+                    <span>🔒 Secure Payment</span>
                 </div>
 
                 <div class="action-buttons">
                     <button class="buy-btn main-btn" onclick="contactForProduct('buy')">ACQUISTA (DM)</button>
-                    <button class="buy-btn sec-btn" onclick="contactForProduct('info')">INFO</button>
+                    <button class="buy-btn sec-btn" onclick="contactForProduct('info')">INFO PRODOTTO</button>
                 </div>
             </div>
         </div>
@@ -123,36 +123,36 @@
     <footer>
         <div class="footer-content">
             <div class="footer-brand">LUXURY THREAD</div>
-            <p class="footer-loc">MILANO — TOKYO</p>
+            <p class="footer-loc">MILANO / TOKYO</p>
             <div class="footer-links">
                 <a href="https://instagram.com/luxury.thread_" target="_blank">INSTAGRAM</a>
-                <span class="sep">|</span>
+                <span class="sep">/</span>
                 <a onclick="openReviewsModal()">RECENSIONI</a>
-                <span class="sep">|</span>
-                <a onclick="toggleTheme()" id="theme-toggle">DARK MODE</a>
+                <span class="sep">/</span>
+                <a onclick="toggleTheme()" id="theme-toggle">THEME</a>
             </div>
-            <p class="copyright">© 2026 TUTTI I DIRITTI RISERVATI</p>
+            <p class="copyright">© 2026 LUXURY THREAD</p>
         </div>
     </footer>
 
 </div>
 
 <div class="floating-sourcing-btn" onclick="openSourcingModal()">
-    <span>💎 SOURCING</span>
+    <span>VIP REQUEST</span>
 </div>
 
 <div class="floating-home-btn" onclick="scrollToTop()">
-    <span>↑</span>
+    <span>UP</span>
 </div>
 
 <div id="sourcing-modal" class="popup-overlay">
     <div class="popup-box sourcing-box">
         <div class="popup-header">
-            <h3>VIP SOURCING</h3>
-            <p>Non trovi il prodotto? Lo cerchiamo noi.</p>
+            <h3>VIP REQUEST</h3>
+            <div class="header-line"></div>
         </div>
         <div class="input-group">
-            <input type="text" id="src-model" placeholder="MODELLO">
+            <input type="text" id="src-model" placeholder="MODELLO DESIDERATO">
         </div>
         <div class="input-group">
             <input type="text" id="src-size" placeholder="TAGLIA">
@@ -167,22 +167,23 @@
 <div id="reviews-modal" class="popup-overlay">
     <div class="popup-box reviews-box">
         <div class="popup-header">
-            <h3>FEEDBACK CLIENTI</h3>
+            <h3>CLIENT FEEDBACK</h3>
+            <div class="header-line"></div>
         </div>
         <div class="reviews-list">
             <div class="review-item">
                 <div class="stars">★★★★★</div>
-                <p>"Prodotto arrivato in condizioni perfette. Servizio impeccabile."</p>
+                <p>"Prodotto perfetto, servizio eccellente."</p>
                 <span class="review-author">@matteo.g</span>
             </div>
             <div class="review-item">
                 <div class="stars">★★★★★</div>
-                <p>"Cercavo questa hoodie ovunque. Grandi!"</p>
+                <p>"Spedizione rapidissima."</p>
                 <span class="review-author">@luca_snkrs</span>
             </div>
             <div class="review-item">
                 <div class="stars">★★★★★</div>
-                <p>"Spedizione rapidissima su Milano."</p>
+                <p>"Trovata in 2 giorni. Grazie!"</p>
                 <span class="review-author">@alessia.v</span>
             </div>
         </div>
