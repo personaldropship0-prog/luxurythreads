@@ -25,10 +25,11 @@
         <div class="header-content">
             <div class="header-left" onclick="goHome()">
                 <div class="logo-slot">
-                    <img src="img/logo.png" alt="LT" onerror="this.style.display='none';">
+                    <img src="img/logo.png" alt="LT" onerror="this.src='https://via.placeholder.com/100x100?text=LT'">
                 </div>
+                <h1 class="brand-title">LUXURY THREAD</h1>
             </div>
-            <h1 class="brand-title" onclick="goHome()">LUXURY THREAD</h1>
+            
             <div class="header-right">
                 <button class="search-trigger-btn" onclick="openSearch()">CERCA</button>
             </div>
@@ -38,12 +39,12 @@
     <div id="main-container">
         
         <main id="home-view" class="content-area">
+            
             <div class="hero-banner">
-                <div class="hero-overlay"></div>
                 <div class="hero-text-content">
-                    <h2>RESELLER</h2>
+                    <h2>RESELLER MILANO</h2>
                     <div class="hero-line"></div>
-                    <p>MILAN / TOKYO</p>
+                    <p>SELECTED ITEMS / EXCLUSIVE DROPS</p>
                 </div>
             </div>
 
@@ -62,7 +63,7 @@
         <div class="footer-content">
             <div class="footer-brand">LUXURY THREAD</div>
             <div class="footer-links">
-                <a onclick="toggleTheme()">THEME</a>
+                <a onclick="toggleTheme()">THEME SWITCH</a>
             </div>
             <p class="copyright">© 2026 LT MILANO</p>
         </div>
@@ -79,14 +80,14 @@
         <div class="detail-info">
             <div class="info-header">
                 <span id="detail-category" class="mini-badge">CAT</span>
-                <span class="mini-badge verified">AUTHENTIC</span>
+                <span class="mini-badge verified">AUTHENTIC 100%</span>
             </div>
             <h2 id="detail-title">NOME PRODOTTO</h2>
             <div id="detail-price" class="price-big">€000</div>
             <p id="detail-desc">Descrizione prodotto.</p>
             <div class="action-buttons">
-                <button class="buy-btn main-btn" onclick="contactForProduct('buy')">ACQUISTA</button>
-                <button class="buy-btn sec-btn" onclick="contactForProduct('info')">INFO</button>
+                <button class="buy-btn main-btn" onclick="contactForProduct('buy')">ACQUISTA ORA</button>
+                <button class="buy-btn sec-btn" onclick="contactForProduct('info')">CHIEDI INFO</button>
             </div>
         </div>
     </div>
@@ -98,7 +99,7 @@
         <span>CERCA PRODOTTO</span>
         <button onclick="closeSearch()">CHIUDI</button>
     </div>
-    <input type="text" id="searchInput" placeholder="Digita qui..." autocomplete="off">
+    <input type="text" id="searchInput" placeholder="Digita marca o modello..." autocomplete="off">
 </div>
 
 <div class="bot-wrapper">
@@ -108,7 +109,7 @@
             <button onclick="toggleBot()">&#10005;</button>
         </div>
         <div class="chat-body">
-            <p>Non trovi quello che cerchi? Scrivici il modello.</p>
+            <p>Non trovi quello che cerchi? Scrivici il modello e la taglia.</p>
             <input type="text" id="bot-input" placeholder="Es. Jordan 4 Black, 43">
             <button class="send-bot-btn" onclick="sendBotRequest()">INVIA RICHIESTA</button>
         </div>
