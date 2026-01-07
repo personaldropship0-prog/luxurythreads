@@ -24,12 +24,23 @@ const products = [
 ];
 
 document.addEventListener("DOMContentLoaded", () => {
-    filterProducts('home');
+    // FIX: Seleziona visivamente il bottone "Home"
+    const homeBtn = document.querySelector(".filters button");
+    if(homeBtn) homeBtn.classList.add('active');
+
+    // FIX: Carica direttamente i dati Home senza aspettare il click
+    renderProducts(products.filter(p => p.category === 'home'));
 });
 
 function renderProducts(list) {
     const grid = document.getElementById('products-grid');
     grid.innerHTML = "";
+    
+    if(list.length === 0) {
+        grid.innerHTML = "<p style='width:100%; text-align:center;'>Nessun prodotto.</p>";
+        return;
+    }
+
     list.forEach(p => {
         grid.innerHTML += `
             <div class="card" onclick="openProductPage(${p.id})">
@@ -44,8 +55,14 @@ function renderProducts(list) {
 }
 
 function filterProducts(cat) {
+    // Rimuovi classe active da tutti
     document.querySelectorAll('.filters button').forEach(b => b.classList.remove('active'));
-    event.target.classList.add('active');
+    
+    // Aggiungi active SOLO se l'evento esiste (click utente)
+    if(event && event.target) {
+        event.target.classList.add('active');
+    }
+
     renderProducts(products.filter(p => p.category === cat));
 }
 
@@ -65,7 +82,7 @@ function openProductPage(id) {
 
     // MOBILE: Overlay
     if(window.innerWidth <= 768) {
-        prodView.style.display = 'block'; // Diventa overlay fisso
+        prodView.style.display = 'flex'; // FLEX serve per centrare il popup
         document.body.style.overflow = 'hidden'; // Blocca scroll sotto
     } 
     // DESKTOP: Switch view classico
@@ -87,7 +104,13 @@ function closeProductPage() {
 
 function goHome() {
     closeProductPage();
-    filterProducts('home');
+    // Simula click su Home per resettare filtri
+    const homeBtn = document.querySelector(".filters button");
+    if(homeBtn) {
+        homeBtn.click();
+    } else {
+        filterProducts('home');
+    }
 }
 
 // UTILS
