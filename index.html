@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>LUXURY THREAD | Final Mobile</title>
+    <title>LUXURY THREAD | Milan</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,7 +17,7 @@
 
     <div class="news-ticker">
         <div class="ticker-content">
-            WORLDWIDE SHIPPING ✈ · AUTHENTIC GUARANTEED 100% · SOURCING SERVICE AVAILABLE · DM FOR INQUIRIES · 
+            WORLDWIDE SHIPPING · AUTHENTIC GUARANTEED 100% · SOURCING SERVICE AVAILABLE · DM FOR INQUIRIES · 
         </div>
     </div>
 
@@ -30,7 +30,7 @@
             </div>
             <h1 class="brand-title" onclick="goHome()">LUXURY THREAD</h1>
             <div class="header-right">
-                <button class="search-trigger-btn" onclick="openSearchOverlay()">CERCA</button>
+                <button class="search-trigger-btn" onclick="openSearch()">CERCA</button>
             </div>
         </div>
     </header>
@@ -59,23 +59,18 @@
 
         <section id="single-product-page" class="single-product-view">
             <div class="product-detail-container">
-                
                 <div class="detail-image">
                     <button class="close-product-btn" onclick="closeProductPage()">&#10005;</button>
                     <img id="detail-img" src="" alt="">
                 </div>
-                
                 <div class="detail-info">
                     <div class="info-header">
                         <span id="detail-category" class="mini-badge">CAT</span>
-                        <span class="mini-badge verified">100% AUTHENTIC</span>
+                        <span class="mini-badge verified">AUTHENTIC</span>
                     </div>
-                    
                     <h2 id="detail-title">NOME PRODOTTO</h2>
                     <div id="detail-price" class="price-big">€000</div>
-                    
                     <p id="detail-desc">Descrizione prodotto.</p>
-                    
                     <div class="action-buttons">
                         <button class="buy-btn main-btn" onclick="contactForProduct('buy')">ACQUISTA</button>
                         <button class="buy-btn sec-btn" onclick="contactForProduct('info')">INFO</button>
@@ -84,11 +79,12 @@
             </div>
         </section>
 
-    </div> <footer>
+    </div>
+
+    <footer>
         <div class="footer-content">
             <div class="footer-brand">LUXURY THREAD</div>
             <div class="footer-links">
-                <a onclick="openReviewsModal()">FEEDBACK</a> / 
                 <a onclick="toggleTheme()">THEME</a>
             </div>
             <p class="copyright">© 2026 LT MILANO</p>
@@ -97,17 +93,31 @@
 
 </div>
 
-<div id="search-overlay" class="search-overlay">
-    <button class="close-search-btn" onclick="closeSearchOverlay()">CHIUDI</button>
-    <input type="text" id="searchInput" placeholder="CERCA..." autocomplete="off">
+<div id="search-backdrop" class="search-backdrop" onclick="closeSearch()"></div>
+<div id="search-bar-container" class="search-bar-container">
+    <div class="search-header">
+        <span>CERCA PRODOTTO</span>
+        <button onclick="closeSearch()">CHIUDI</button>
+    </div>
+    <input type="text" id="searchInput" placeholder="Digita qui..." autocomplete="off">
 </div>
 
-<div id="reviews-modal" class="popup-overlay">
-    <div class="popup-box reviews-box">
-        <h3>FEEDBACK CLIENTI</h3>
-        <p>"Servizio impeccabile." - @cliente</p>
-        <button class="close-text-btn" onclick="closeReviewsModal()">CHIUDI</button>
+<div class="vip-bot-wrapper">
+    <div id="vip-chat-window" class="vip-chat-window">
+        <div class="chat-header">
+            <span>SOURCING REQUEST</span>
+            <button onclick="toggleBot()">&#10005;</button>
+        </div>
+        <div class="chat-body">
+            <p>Non trovi quello che cerchi? Scrivici modello e taglia.</p>
+            <input type="text" id="vip-input" placeholder="Es. Jordan 4 Black, 43">
+            <button class="send-vip-btn" onclick="sendVipRequest()">INVIA RICHIESTA</button>
+        </div>
     </div>
+    
+    <button id="vip-trigger-btn" class="vip-trigger-btn" onclick="toggleBot()">
+        VIP
+    </button>
 </div>
 
 <script src="script.js"></script>
