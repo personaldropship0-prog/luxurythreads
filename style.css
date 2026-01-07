@@ -26,7 +26,7 @@ body {
 }
 
 .page-wrapper { display: flex; flex-direction: column; min-height: 100vh; }
-#main-container { flex: 1; width: 100%; max-width: 1400px; margin: 0 auto; padding-top: 135px; /* Spazio per Header */ }
+#main-container { flex: 1; width: 100%; max-width: 1400px; margin: 0 auto; padding-top: 135px; }
 
 /* HEADER & TICKER */
 .news-ticker {
@@ -66,10 +66,9 @@ body {
 }
 .filters button.active { background: var(--text-color); color: var(--inverted-text); }
 
-/* GRIGLIA PRODOTTI (MODIFICATA PER 2 COLONNE MOBILE) */
+/* GRIGLIA PRODOTTI (2 COLONNE MOBILE) */
 .product-grid {
     display: grid; 
-    /* minmax 150px permette 2 colonne su schermi da 300px+ */
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); 
     gap: 15px; padding: 0 20px 60px;
 }
@@ -79,75 +78,91 @@ body {
 .card h3 { font-family: var(--font-heading); font-size: 0.9rem; margin-bottom: 5px; text-transform: uppercase; color: var(--text-color); }
 .price { font-family: var(--font-body); font-size: 0.9rem; opacity: 0.8; }
 
-/* --- PRODUCT VIEW (COMPATTA & RESPONSIVE) --- */
+/* --- PRODUCT VIEW (DESKTOP STANDARD) --- */
 .single-product-view { display: none; padding-bottom: 60px; }
-
 .product-detail-container {
     display: flex; background: var(--glass-bg); border: var(--glass-border);
-    min-height: 500px;
+    min-height: 500px; position: relative;
 }
 .detail-image { flex: 1; position: relative; border-right: var(--glass-border); }
 .detail-image img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+/* Tasto X Desktop (nascosto su mobile, vedi sotto) */
 .close-product-btn {
     position: absolute; top: 20px; left: 20px; width: 40px; height: 40px;
     background: var(--inverted-text); color: var(--text-color); border: 1px solid var(--text-color);
-    font-size: 1.2rem; cursor: pointer; display: flex; justify-content: center; align-items: center;
-    z-index: 10;
+    font-size: 1.2rem; cursor: pointer; display: flex; justify-content: center; align-items: center; z-index: 10;
 }
+
 .detail-info { flex: 1; padding: 40px; display: flex; flex-direction: column; justify-content: center; }
 .info-header { margin-bottom: 15px; display: flex; gap: 10px; }
 .mini-badge { font-size: 0.7rem; border: 1px solid var(--text-color); padding: 3px 8px; text-transform: uppercase; font-family: var(--font-heading); }
 .mini-badge.verified { background: var(--text-color); color: var(--inverted-text); }
-
 .detail-info h2 { font-family: var(--font-heading); font-size: 2.5rem; line-height: 1; margin-bottom: 10px; text-transform: uppercase; }
 .price-big { font-family: var(--font-heading); font-size: 1.8rem; margin-bottom: 20px; }
 .detail-info p { font-size: 0.9rem; opacity: 0.8; margin-bottom: 30px; line-height: 1.5; }
-
 .action-buttons { display: flex; gap: 10px; margin-top: auto; }
 .buy-btn { flex: 1; padding: 15px; border: 1px solid var(--text-color); font-family: var(--font-heading); cursor: pointer; text-transform: uppercase; letter-spacing: 2px; }
 .main-btn { background: var(--text-color); color: var(--inverted-text); }
 .sec-btn { background: transparent; color: var(--text-color); }
 
-/* --- MOBILE SPECIFIC OPTIMIZATIONS (APP STYLE) --- */
+/* --- MOBILE SPECIFIC (MODAL POPUP STYLE) --- */
 @media (max-width: 768px) {
     .main-header { padding: 0 20px; height: 80px; }
     .brand-title { font-size: 1.5rem; }
-    #main-container { padding-top: 115px; } /* Header più piccolo */
+    #main-container { padding-top: 115px; }
     .hero-banner { height: 200px; }
     
-    /* 1. PRODUCT VIEW MOBILE: FIXED OVERLAY SENZA SCROLL */
+    /* 1. SFONDO SCURO (BACKDROP) */
     .single-product-view {
         position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-        z-index: 5000; background: var(--bg-image);
+        z-index: 5000; 
+        background: rgba(0, 0, 0, 0.6); /* Oscura il resto del sito */
+        backdrop-filter: blur(5px);
         margin: 0; padding: 0;
-        display: none; /* Gestito da JS */
+        
+        /* Flexbox per centrare il box prodotto */
+        display: none; /* Gestito da JS (diventa flex quando attivo) */
+        justify-content: center; align-items: center;
     }
     
+    /* 2. CARD PRODOTTO CENTRALE (NON PIÙ FULL SCREEN) */
     .product-detail-container {
-        flex-direction: column; height: 100%; border: none;
+        flex-direction: column; 
+        width: 90%; /* Occupa il 90% della larghezza */
+        height: 80%; /* Occupa l'80% dell'altezza */
+        max-height: 600px;
+        background: var(--inverted-text); /* Sfondo solido */
+        border: 1px solid var(--text-color);
+        box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        overflow: hidden; /* Niente scroll della pagina */
     }
     
-    /* Immagine 45% Altezza */
     .detail-image {
-        flex: none; height: 45%; width: 100%; border-right: none; border-bottom: var(--glass-border);
+        flex: none; height: 45%; width: 100%; 
+        border-right: none; border-bottom: 1px solid #ccc;
     }
     
-    /* Info 55% Altezza - COMPATTO */
+    .close-product-btn {
+        top: 10px; left: 10px; /* Spostato leggermente */
+        width: 35px; height: 35px; font-size: 1rem;
+    }
+    
     .detail-info {
         flex: 1; padding: 20px; 
-        justify-content: flex-start; /* Contenuto in alto */
-        background: var(--glass-bg);
+        justify-content: flex-start;
+        background: var(--inverted-text);
+        color: var(--text-color);
     }
     
-    .detail-info h2 { font-size: 1.8rem; margin-bottom: 5px; } /* Titolo più piccolo */
-    .price-big { font-size: 1.4rem; margin-bottom: 15px; } /* Prezzo più piccolo */
+    .detail-info h2 { font-size: 1.6rem; margin-bottom: 5px; }
+    .price-big { font-size: 1.3rem; margin-bottom: 15px; }
     .detail-info p { 
-        font-size: 0.85rem; margin-bottom: 15px; 
-        display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; /* Taglia testo troppo lungo */
+        font-size: 0.8rem; margin-bottom: 15px; 
+        display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
     }
     
-    /* Bottoni sempre visibili in fondo */
-    .action-buttons { margin-top: auto; width: 100%; }
+    .action-buttons { width: 100%; gap: 10px; }
     .buy-btn { padding: 12px; font-size: 0.8rem; }
 }
 
