@@ -1,14 +1,31 @@
+// DATABASE PRODOTTI RICHIESTO
 const products = [
-    { id: 1, name: "Jordan 1 Retro High OG", category: "sneakers", price: 450, img: "https://si.geilicdn.com/open1778275904-1234478995-5fc200000189a4eead4f0a8115b5_800_800.jpg", desc: "Iconica silhouette Chicago colorway. Pelle premium." },
-    { id: 2, name: "Yeezy Boost 350 V2", category: "sneakers", price: 320, img: "https://si.geilicdn.com/wdseller169153426-4802000001872c2910950a2313df_2560_1920.jpg", desc: "Comfort imbattibile con tecnologia Boost." },
-    { id: 3, name: "Supreme Box Logo Hoodie", category: "hoodies", price: 800, img: "https://si.geilicdn.com/open1687670541-252808396-0b160000019a521ee8a30a231226_800_800.jpg", desc: "Il classico streetwear. Heavyweight cotton." },
-    { id: 4, name: "Essentials Fear of God", category: "hoodies", price: 180, img: "https://www.francocuoio.it/wp-content/uploads/2019/10/Hermes-Franco-Cuoio-Web.jpg", desc: "Minimalismo di lusso. Oversized fit." },
-    { id: 5, name: "Gallery Dept. Flared Sweatpants", category: "pants", price: 450, img: "https://si.geilicdn.com/open1610848089-1610848089-491400000192c2ff72390a8115b5_1200_900.jpg", desc: "Hand painted vintage wash." },
-    { id: 6, name: "Chrome Hearts Ring", category: "accessories", price: 650, img: "https://si.geilicdn.com/open1848188377-1848188377-605e00000192c797c77e0a22d234-unadjust_800_800.gif", desc: "Argento sterling .925 lavorato a mano a LA." }
+    // --- HOME (4 Prodotti) ---
+    { id: 1, name: "Jordan 1 High Chicago", category: "home", price: 1800, img: "https://images.stockx.com/images/Air-Jordan-1-Retro-High-OG-Chicago-Reimagined-Product.jpg?fit=fill&bg=FFFFFF&w=1200&h=857&fm=webp&auto=compress&dpr=2&trim=color&updated_at=1665691099", desc: "Il classico senza tempo. Condizioni DS." },
+    { id: 2, name: "Travis Scott Reverse Mocha", category: "home", price: 1200, img: "https://images.stockx.com/images/Air-Jordan-1-Low-OG-SP-Travis-Scott-Reverse-Mocha-Product.jpg?fit=fill&bg=FFFFFF&w=1200&h=857&fm=webp&auto=compress&dpr=2&trim=color&updated_at=1658328765", desc: "La collab più calda del momento." },
+    { id: 3, name: "Celine Hoodie Grey", category: "home", price: 650, img: "https://img.mytheresa.com/1088/1088/66/jpeg/catalog/product/67/P00769342.jpg", desc: "Cotone pesante, fit oversize." },
+    { id: 4, name: "Louis Vuitton Trainer", category: "home", price: 1100, img: "https://it.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-sneaker-lv-trainer-calzature--BM9U5PMI01_PM2_Front%20view.png", desc: "Iconica sneaker by Virgil Abloh." },
+
+    // --- CINTURE (6 Prodotti) ---
+    { id: 5, name: "Hermès H Belt Gold", category: "cinture", price: 750, img: "https://assets.hermes.com/is/image/hermesproduct/cintura-h-au-carre--073967CAAA-Front-1-300-0-1600-1600-q99.jpg", desc: "Fibbia Gold, pelle reversibile." },
+    { id: 6, name: "Gucci GG Marmont", category: "cinture", price: 420, img: "https://media.gucci.com/style/DarkGray_Center_0_0_2400x2400/1566234005/406831_DJ20T_1000_001_100_0000_Light-Cintura-GG-Marmont-in-pelle.jpg", desc: "Classico nero con fibbia ottone." },
+    { id: 7, name: "LV Initiales Reversible", category: "cinture", price: 550, img: "https://it.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-cintura-lv-initiales-reversibile-40-mm-cinture--M9043V_PM2_Front%20view.png", desc: "Monogram Eclipse / Pelle nera." },
+    { id: 8, name: "Ferragamo Gancini", category: "cinture", price: 390, img: "https://cdn.ferragamo.com/wcsstore/FerragamoCatalogAssetStore/images/products/675542/675542_00_464231_F.jpg", desc: "Fibbia Gancini palladio." },
+    { id: 9, name: "Diesel 1DR Belt", category: "cinture", price: 150, img: "https://shop.diesel.com/dw/image/v2/BBPW_PRD/on/demandware.static/-/Sites-diesel-master-catalog/default/dw8e898f82/images/large/X08516PR666_T8013_F.jpg", desc: "Pelle bovina, logo D smaltato." },
+    { id: 10, name: "Prada Saffiano Triangle", category: "cinture", price: 480, img: "https://www.prada.com/content/dam/pradacn_products/2/2CM/2CM206/053F0002/2CM206_053_F0002_SLR.jpg", desc: "Pelle Saffiano iconica." },
+
+    // --- PORTAFOGLI (3 Prodotti) ---
+    { id: 11, name: "Goyard Victoire Wallet", category: "portafogli", price: 900, img: "https://product-images.goat.com/judy_product_images/1699926/01.jpg", desc: "Tela Goyardine verde." },
+    { id: 12, name: "Bottega Veneta Intrecciato", category: "portafogli", price: 550, img: "https://photos.giglio.com/i/2023/10/26/66dfd51e-2580-4d57-8dfa-c603b57367c0.jpg", desc: "Pelle intrecciata a mano." },
+    { id: 13, name: "LV Multiple Wallet", category: "portafogli", price: 490, img: "https://it.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-portafoglio-multiple-monogram-shadow-piccola-pelletteria--M62901_PM2_Front%20view.png", desc: "Pelle Shadow nera." },
+
+    // --- BORSELLI (1 Prodotto) ---
+    { id: 14, name: "Prada Re-Nylon Pouch", category: "borselli", price: 690, img: "https://www.prada.com/content/dam/pradanux_products/2/2VH/2VH112/2DMHF0002/2VH112_2DMH_F0002_V_WOP_SLF.png", desc: "Nylon rigenerato, tracolla regolabile." }
 ];
 
 document.addEventListener("DOMContentLoaded", () => {
-    renderProducts(products);
+    // Di default mostra i prodotti "home"
+    renderProducts(products.filter(p => p.category === 'home'));
     
     // Header Scroll Logic
     let lastScroll = 0;
@@ -17,16 +34,13 @@ document.addEventListener("DOMContentLoaded", () => {
     
     window.addEventListener('scroll', () => {
         const currentScroll = window.scrollY;
-        
         if (currentScroll > 50 && currentScroll > lastScroll) {
             header.classList.add('hidden');
         } else {
             header.classList.remove('hidden');
         }
-        
         if (currentScroll > 300) homeBtn.classList.add('visible');
         else homeBtn.classList.remove('visible');
-
         lastScroll = currentScroll;
     });
 });
@@ -59,56 +73,69 @@ function renderProducts(list) {
 function filterProducts(cat) {
     document.querySelectorAll('.filters button').forEach(b => b.classList.remove('active'));
     event.target.classList.add('active');
-    if(cat === 'all') renderProducts(products);
-    else renderProducts(products.filter(p => p.category === cat));
+    
+    // Filtro esatto per categoria
+    const filtered = products.filter(p => p.category === cat);
+    renderProducts(filtered);
 }
 
 function openProductPage(id) {
     const p = products.find(x => x.id === id);
     if(!p) return;
-    document.getElementById('home-view').style.display = 'none';
-    document.getElementById('single-product-page').style.display = 'block';
+    
+    // Su Mobile questo div diventerà un overlay a tutto schermo
+    const page = document.getElementById('single-product-page');
+    page.style.display = 'block'; 
+    
     document.getElementById('detail-img').src = p.img;
     document.getElementById('detail-title').innerText = p.name;
     document.getElementById('detail-price').innerText = `€${p.price}`;
     document.getElementById('detail-desc').innerText = p.desc;
-    document.getElementById('detail-category').innerText = p.category;
-    window.scrollTo(0,0);
+    document.getElementById('detail-category').innerText = p.category.toUpperCase();
+    
+    // Blocca lo scroll della home sotto se siamo su mobile
+    if(window.innerWidth <= 768) {
+        document.body.style.overflow = 'hidden'; 
+    } else {
+        window.scrollTo(0,0);
+        document.getElementById('home-view').style.display = 'none'; // Su desktop nascondiamo la home
+    }
 }
 
 function goBackToHome() {
-    document.getElementById('single-product-page').style.display = 'none';
+    const page = document.getElementById('single-product-page');
+    page.style.display = 'none';
+    
     document.getElementById('home-view').style.display = 'block';
+    document.body.style.overflow = 'auto'; // Riabilita scroll body
 }
 
 function goHome() {
     goBackToHome();
-    filterProducts('all');
+    document.querySelector('.filters button').click(); // Torna a Home
     window.scrollTo(0,0);
 }
 
+// Funzioni Search e Modal (Standard)
 function openSearchOverlay() {
     document.getElementById('search-overlay').classList.add('active');
     setTimeout(() => document.getElementById('searchInput').focus(), 100);
 }
-function closeSearchOverlay() {
-    document.getElementById('search-overlay').classList.remove('active');
-}
+function closeSearchOverlay() { document.getElementById('search-overlay').classList.remove('active'); }
 function quickSearch(term) {
     document.getElementById('searchInput').value = term;
-    const filtered = products.filter(p => p.name.toLowerCase().includes(term.toLowerCase()));
+    // Cerca in tutti i prodotti ignorando le categorie attuali
+    const filtered = products.filter(p => p.name.toLowerCase().includes(term.toLowerCase()) || p.category.includes(term.toLowerCase()));
     renderProducts(filtered);
+    
+    // Togli classe active dai filtri visuali
+    document.querySelectorAll('.filters button').forEach(b => b.classList.remove('active'));
+    
     closeSearchOverlay();
     goBackToHome();
 }
 document.getElementById('searchInput').addEventListener('keyup', (e) => {
-    if(e.key === 'Enter') {
-        const val = e.target.value.toLowerCase();
-        const filtered = products.filter(p => p.name.toLowerCase().includes(val));
-        renderProducts(filtered);
-        closeSearchOverlay();
-        goBackToHome();
-    }
+    if(e.key === 'Enter') quickSearch(e.target.value);
 });
 
 function openSourcingModal() { document.getElementById('sourcing-modal').style.display = 'flex'; }
