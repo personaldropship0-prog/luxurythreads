@@ -3,15 +3,10 @@
     --bg-image: url('img/marmo-white.jpg'); 
     --text-color: #000000;        
     --inverted-text: #ffffff;    
-    
-    /* VETRO/SFONDO SOLIDO PER I FILTRI */
-    --glass-bg: rgba(255, 255, 255, 0.85); /* Meno trasparente per leggibilità */
+    --glass-bg: rgba(255, 255, 255, 0.9); /* Più opaco per leggibilità */
     --glass-border: 1px solid rgba(0, 0, 0, 0.1); 
     --blur-amt: 20px;
-    
-    /* Colore sfondo solido per i bottoni filtro */
     --filter-btn-bg: #ffffff; 
-    
     --font-heading: 'Oswald', sans-serif;
     --font-body: 'Inter', sans-serif;
     --radius: 0px; 
@@ -21,310 +16,157 @@ body.dark-mode {
     --bg-image: url('img/marmo-black.jpg'); 
     --text-color: #ffffff;        
     --inverted-text: #000000;    
-    --glass-bg: rgba(0, 0, 0, 0.85);
+    --glass-bg: rgba(0, 0, 0, 0.9);
     --glass-border: 1px solid rgba(255, 255, 255, 0.15);
-    
     --filter-btn-bg: #1a1a1a;
 }
 
-/* --- BASE --- */
 * { margin:0; padding:0; box-sizing:border-box; border-radius: 0 !important; }
 
 body {
-    font-family: var(--font-body); 
-    color: var(--text-color);
-    background-image: var(--bg-image);
-    background-size: cover; background-attachment: fixed; background-position: center;
-    overflow-x: hidden;
-    transition: color 0.4s ease; 
+    font-family: var(--font-body); color: var(--text-color);
+    background-image: var(--bg-image); background-size: cover; background-attachment: fixed; background-position: center;
+    overflow-x: hidden; transition: color 0.4s ease; 
 }
 
 .page-wrapper { display: flex; flex-direction: column; min-height: 100vh; }
 .content-area { flex: 1; width: 100%; max-width: 1800px; margin: 0 auto; }
 
-/* FIX MOBILE: Spacer rimosso, usiamo margin sul banner per controllo migliore */
-.spacer { display: none; } 
-
-/* --- TICKER --- */
+/* TICKER & HEADER */
 .news-ticker {
     position: fixed; top: 0; left: 0; width: 100%; height: 35px;
     background: var(--text-color); color: var(--inverted-text);
-    z-index: 2000; overflow: hidden; display: flex; align-items: center;
-    border-bottom: 1px solid var(--inverted-text);
+    z-index: 2000; overflow: hidden; display: flex; align-items: center; border-bottom: 1px solid var(--inverted-text);
 }
-.ticker-content {
-    white-space: nowrap; animation: scroll-left 40s linear infinite;
-    font-family: var(--font-heading); font-size: 0.8rem; letter-spacing: 3px; font-weight: 400; text-transform: uppercase;
-}
+.ticker-content { white-space: nowrap; animation: scroll-left 40s linear infinite; font-family: var(--font-heading); font-size: 0.8rem; letter-spacing: 3px; text-transform: uppercase; }
 @keyframes scroll-left { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
 
-/* --- HEADER --- */
 .main-header {
-    position: fixed; top: 35px; left: 0; width: 100%;
-    z-index: 1000; padding: 20px 40px;
-    background: var(--glass-bg);
-    backdrop-filter: blur(var(--blur-amt)); -webkit-backdrop-filter: blur(var(--blur-amt));
-    border-bottom: var(--glass-border);
+    position: fixed; top: 35px; left: 0; width: 100%; z-index: 1000; padding: 0 40px;
+    background: var(--glass-bg); backdrop-filter: blur(var(--blur-amt)); -webkit-backdrop-filter: blur(var(--blur-amt));
+    border-bottom: var(--glass-border); height: 100px; display: flex; align-items: center;
     transition: transform 0.3s ease;
-    height: 100px; /* Altezza fissa per calcoli precisi */
-    display: flex; align-items: center;
 }
 .main-header.hidden { transform: translateY(-150%); }
 .header-content { width: 100%; display: flex; align-items: center; justify-content: space-between; }
-
-/* FIX LOGO GIGANTE: Dimensioni forzate */
 .logo-slot {
-    width: 50px !important; 
-    height: 50px !important; 
-    min-width: 50px; /* Impedisce che si schiacci */
-    border: 1px solid var(--text-color);
-    display: flex; align-items: center; justify-content: center; 
-    background: rgba(255,255,255,0.1); 
-    cursor: pointer;
-    overflow: hidden; /* Taglia l'immagine se sfora */
+    width: 50px !important; height: 50px !important; min-width: 50px; 
+    border: 1px solid var(--text-color); display: flex; align-items: center; justify-content: center; 
+    background: rgba(255,255,255,0.1); cursor: pointer; overflow: hidden;
 }
-.logo-slot img { 
-    width: 100%; 
-    height: 100%; 
-    object-fit: cover; /* Adatta l'immagine al quadrato */
-    display: block; 
-}
-
-.brand-title {
-    font-family: var(--font-heading); font-size: 2.2rem; font-weight: 400; 
-    letter-spacing: 8px; text-transform: uppercase; cursor: pointer; text-align: center;
-    line-height: 1;
-}
-
-.search-trigger-btn {
-    background: transparent; border: 1px solid var(--text-color); color: var(--text-color); padding: 12px 25px;
-    font-family: var(--font-heading); font-size: 0.9rem; letter-spacing: 2px; cursor: pointer; transition: background 0.2s;
-    height: 50px; /* Allineato col logo */
-}
+.logo-slot img { width: 100%; height: 100%; object-fit: cover; }
+.brand-title { font-family: var(--font-heading); font-size: 2.2rem; letter-spacing: 8px; text-transform: uppercase; cursor: pointer; text-align: center; line-height: 1; }
+.search-trigger-btn { background: transparent; border: 1px solid var(--text-color); color: var(--text-color); padding: 0 25px; height: 50px; font-family: var(--font-heading); letter-spacing: 2px; cursor: pointer; }
 .search-trigger-btn:hover { background: var(--text-color); color: var(--inverted-text); }
 
-/* --- HERO BANNER (RESELLER SECTION) --- */
+/* HERO */
 .hero-banner {
-    width: 100%;
-    height: 350px;
-    position: relative;
-    /* Immagine con sfondo nero di fallback */
-    background-color: #000;
-    background-image: url('https://images.unsplash.com/photo-1486304873000-235643847519?q=80&w=2832&auto=format&fit=crop'); 
-    background-size: cover;
-    background-position: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 40px;
-    border-bottom: 1px solid var(--text-color);
-    
-    /* FIX MOBILE: Margin top per scendere sotto l'header fisso */
-    margin-top: 135px; /* 35px ticker + 100px header */
+    width: 100%; height: 350px; position: relative;
+    background-color: #000; background-image: url('https://images.unsplash.com/photo-1486304873000-235643847519?q=80&w=2832&auto=format&fit=crop'); 
+    background-size: cover; background-position: center;
+    display: flex; justify-content: center; align-items: center;
+    margin-bottom: 40px; border-bottom: 1px solid var(--text-color); margin-top: 135px;
 }
+.hero-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.5); }
+.hero-text-content { position: relative; z-index: 2; text-align: center; color: #fff; padding: 0 20px; }
+.hero-text-content h2 { font-family: var(--font-heading); font-size: 3rem; letter-spacing: 10px; margin-bottom: 10px; }
+.hero-text-content p { font-family: var(--font-heading); font-size: 0.9rem; letter-spacing: 5px; opacity: 0.9; }
+.hero-line { width: 60px; height: 2px; background: #fff; margin: 20px auto; }
+.hero-sub { font-family: var(--font-body); font-size: 0.8rem; letter-spacing: 2px; }
 
-.hero-overlay {
-    position: absolute; inset: 0;
-    background: rgba(0,0,0,0.5); /* Scurisce l'immagine */
-}
-
-.hero-text-content {
-    position: relative; z-index: 2;
-    text-align: center; color: #fff; padding: 0 20px;
-}
-
-.hero-text-content h2 {
-    font-family: var(--font-heading); font-size: 3rem; letter-spacing: 10px;
-    font-weight: 400; margin-bottom: 10px;
-}
-.hero-text-content p {
-    font-family: var(--font-heading); font-size: 0.9rem; letter-spacing: 5px; opacity: 0.9;
-}
-.hero-line {
-    width: 60px; height: 2px; background: #fff; margin: 20px auto;
-}
-.hero-sub {
-    font-family: var(--font-body); font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase;
-}
-
-/* --- FILTRI (CASELLE SOLIDE) --- */
-.filters { 
-    display: flex; justify-content: center; flex-wrap: wrap; 
-    gap: 15px; padding: 0 40px 40px; 
-}
+/* FILTRI */
+.filters { display: flex; justify-content: center; flex-wrap: wrap; gap: 15px; padding: 0 40px 40px; }
 .filters button {
-    padding: 15px 30px; 
-    background: var(--filter-btn-bg); 
-    border: 1px solid var(--text-color);
-    font-family: var(--font-heading); font-size: 0.9rem; font-weight: 400; 
-    color: var(--text-color); 
-    cursor: pointer; letter-spacing: 2px;
-    text-transform: uppercase; 
-    transition: all 0.3s;
-    min-width: 140px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    padding: 15px 30px; background: var(--filter-btn-bg); border: 1px solid var(--text-color);
+    font-family: var(--font-heading); font-size: 0.9rem; color: var(--text-color); cursor: pointer; letter-spacing: 2px;
+    min-width: 130px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); transition: 0.3s;
 }
-.filters button:hover { 
-    transform: translateY(-2px); 
-    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-}
-.filters button.active { 
-    background: var(--text-color); color: var(--inverted-text); border-color: var(--text-color);
-}
+.filters button.active { background: var(--text-color); color: var(--inverted-text); border-color: var(--text-color); }
 
-/* --- GRID SYSTEM --- */
-.product-grid {
-    display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 20px; padding: 0 40px 80px;
-}
-.card {
-    background: var(--glass-bg);
-    border: var(--glass-border);
-    cursor: pointer; transition: background 0.3s; position: relative;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.03); 
-}
+/* GRID */
+.product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; padding: 0 40px 80px; }
+.card { background: var(--glass-bg); border: var(--glass-border); cursor: pointer; transition: background 0.3s; position: relative; box-shadow: 0 5px 15px rgba(0,0,0,0.03); }
 .card:hover { background: var(--text-color); }
 .card:hover .card-details h3, .card:hover .price { color: var(--inverted-text); }
-.card:hover .card-img { opacity: 0.9; }
-
 .card-img { width: 100%; aspect-ratio: 1/1; object-fit: cover; display: block; border-bottom: var(--glass-border); }
 .card-details { padding: 20px; text-align: left; }
-.card h3 { 
-    font-family: var(--font-heading); font-weight: 400; font-size: 1.1rem; 
-    margin-bottom: 5px; text-transform: uppercase; letter-spacing: 1px; color: var(--text-color);
-}
-.price { font-family: var(--font-heading); font-size: 1rem; font-weight: 300; color: var(--text-color); opacity: 0.7;}
+.card h3 { font-family: var(--font-heading); font-size: 1.1rem; margin-bottom: 5px; letter-spacing: 1px; color: var(--text-color); }
+.price { font-family: var(--font-heading); font-size: 1rem; color: var(--text-color); opacity: 0.7;}
 
-/* --- PRODUCT PAGE --- */
-.single-product-view { display: none; padding-bottom: 80px; margin-top: 135px; /* Spazio per header */ }
+/* PRODUCT VIEW (Standard Desktop) */
+.single-product-view { display: none; padding-bottom: 80px; margin-top: 135px; }
 .product-top-bar { padding: 0 40px 20px; text-align: left; border-bottom: var(--glass-border); margin-bottom: 40px; }
-.back-link {
-    background: var(--filter-btn-bg);
-    border: 1px solid var(--text-color); color: var(--text-color); padding: 10px 20px;
-    font-family: var(--font-heading); font-size: 0.8rem; letter-spacing: 2px; cursor: pointer; text-transform: uppercase;
-    transition: 0.2s;
-}
-.back-link:hover { background: var(--text-color); color: var(--inverted-text); }
-
-.product-detail-container {
-    display: flex; width: 100%; max-width: 1400px; margin: 0 auto; 
-    border: var(--glass-border); background: var(--glass-bg);
-}
-.detail-image { flex: 1; border-right: var(--glass-border); }
+.back-link { background: var(--filter-btn-bg); border: 1px solid var(--text-color); color: var(--text-color); padding: 10px 20px; font-family: var(--font-heading); letter-spacing: 2px; cursor: pointer; }
+.product-detail-container { display: flex; width: 100%; max-width: 1400px; margin: 0 auto; border: var(--glass-border); background: var(--glass-bg); }
+.detail-image { flex: 1; border-right: var(--glass-border); position: relative; }
 .detail-image img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.mobile-back-btn { display: none; } /* Nascosto su desktop */
 .detail-info { flex: 1; padding: 60px; display: flex; flex-direction: column; justify-content: center; }
 .badges-row { display: flex; gap: 10px; margin-bottom: 20px; }
-.badge, .verified-badge { 
-    font-family: var(--font-heading); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; 
-    border: 1px solid var(--text-color); padding: 5px 10px; color: var(--text-color);
-}
+.badge, .verified-badge { font-family: var(--font-heading); font-size: 0.75rem; letter-spacing: 2px; border: 1px solid var(--text-color); padding: 5px 10px; color: var(--text-color); }
 .verified-badge { background: var(--text-color); color: var(--inverted-text); }
-.detail-info h2 { 
-    font-family: var(--font-heading); font-size: 3.5rem; font-weight: 300; 
-    margin: 0 0 10px; text-transform: uppercase; letter-spacing: 2px; line-height: 1;
-}
-.price-tag { font-family: var(--font-heading); font-size: 2rem; font-weight: 400; margin-bottom: 30px; letter-spacing: 1px; }
+.detail-info h2 { font-family: var(--font-heading); font-size: 3.5rem; margin: 0 0 10px; letter-spacing: 2px; line-height: 1; }
+.price-tag { font-family: var(--font-heading); font-size: 2rem; margin-bottom: 30px; letter-spacing: 1px; }
 .divider { width: 100%; height: 1px; background: var(--text-color); opacity: 0.2; margin-bottom: 30px; }
-.detail-info p { font-family: var(--font-body); font-size: 1rem; line-height: 1.6; opacity: 0.8; margin-bottom: 30px; font-weight: 300; }
-.trust-info { display: flex; gap: 20px; font-size: 0.8rem; opacity: 0.7; margin-bottom: 40px; font-family: var(--font-heading); letter-spacing: 1px; text-transform: uppercase;}
 .action-buttons { display: flex; gap: 0; }
-.buy-btn {
-    flex: 1; padding: 20px; text-transform: uppercase; letter-spacing: 3px; font-size: 0.9rem; font-family: var(--font-heading);
-    cursor: pointer; border: 1px solid var(--text-color); transition: 0.2s;
-}
+.buy-btn { flex: 1; padding: 20px; letter-spacing: 3px; font-family: var(--font-heading); cursor: pointer; border: 1px solid var(--text-color); background: transparent; color: var(--text-color); }
 .main-btn { background: var(--text-color); color: var(--inverted-text); }
-.main-btn:hover { background: transparent; color: var(--text-color); }
-.sec-btn { background: transparent; color: var(--text-color); border-left: none; }
-.sec-btn:hover { background: rgba(0,0,0,0.05); }
 
-/* --- SEARCH & MODALS --- */
-.search-overlay {
-    position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
-    background: var(--inverted-text); z-index: 3000;
-    opacity: 0; visibility: hidden; transition: opacity 0.3s ease;
-    display: flex; flex-direction: column; padding: 60px;
-}
-.search-overlay.active { opacity: 1; visibility: visible; }
-.dark-mode .search-overlay { background: #000; }
-.search-top-row { display: flex; justify-content: space-between; margin-bottom: 80px; align-items: center;}
-.search-brand { font-family: var(--font-heading); font-size: 1.5rem; letter-spacing: 5px; text-transform: uppercase; }
-.close-search-btn { background: none; border: 1px solid var(--text-color); padding: 10px 20px; font-family: var(--font-heading); letter-spacing: 2px; cursor: pointer; color: var(--text-color); text-transform: uppercase; transition: 0.2s; }
-.close-search-btn:hover { background: var(--text-color); color: var(--inverted-text); }
-.search-input-wrapper { display: flex; align-items: flex-end; border-bottom: 2px solid var(--text-color); padding-bottom: 15px; margin-bottom: 40px; }
-.search-icon { font-family: var(--font-heading); font-size: 1rem; letter-spacing: 2px; margin-right: 20px; opacity: 0.6; }
-.search-input-wrapper input {
-    width: 100%; border: none; background: transparent; font-family: var(--font-heading);
-    font-size: 3rem; font-weight: 300; text-transform: uppercase; color: var(--text-color); outline: none; letter-spacing: 2px;
-}
-.quick-links { display: flex; flex-wrap: wrap; gap: 20px; font-family: var(--font-heading); letter-spacing: 1px; text-transform: uppercase; }
-.quick-links a { text-decoration: none; border-bottom: 1px solid transparent; cursor: pointer; color: var(--text-color); opacity: 0.5; transition: 0.2s; }
-.quick-links a:hover { opacity: 1; border-color: var(--text-color); }
-.popup-overlay {
-    display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.8);
-    z-index: 4000; justify-content: center; align-items: center;
-}
-.popup-box {
-    background: var(--inverted-text); color: var(--text-color);
-    padding: 50px; width: 100%; max-width: 500px;
-    border: 1px solid var(--text-color);
-}
-.popup-header { margin-bottom: 30px; text-align: center; }
-.popup-header h3 { font-family: var(--font-heading); font-weight: 400; letter-spacing: 5px; font-size: 1.5rem; }
-.header-line { width: 40px; height: 1px; background: var(--text-color); margin: 15px auto 0; }
-.input-group input {
-    width: 100%; padding: 15px 0; margin-bottom: 25px; border: none; border-bottom: 1px solid var(--text-color);
-    background: transparent; font-family: var(--font-heading); letter-spacing: 2px; outline: none; font-size: 1.1rem; color: var(--text-color);
-}
-.close-text-btn { background: none; border: none; border-bottom: 1px solid var(--text-color); padding-bottom: 2px; cursor: pointer; color: var(--text-color); font-family: var(--font-heading); letter-spacing: 2px; margin-top: 15px; text-transform: uppercase; }
-.reviews-list { margin-bottom: 30px; border-top: 1px solid rgba(0,0,0,0.1); }
-.review-item { padding: 20px 0; border-bottom: 1px solid rgba(0,0,0,0.1); }
-.review-item .stars { letter-spacing: 5px; font-size: 0.8rem; margin-bottom: 5px; }
-.floating-sourcing-btn {
-    position: fixed; bottom: 30px; right: 30px;
-    background: var(--text-color); color: var(--inverted-text);
-    padding: 15px 25px; 
-    font-family: var(--font-heading); letter-spacing: 2px; font-size: 0.8rem; 
-    cursor: pointer; z-index: 1500; border: 1px solid var(--text-color); transition: 0.3s;
-}
-.floating-sourcing-btn:hover { background: var(--inverted-text); color: var(--text-color); }
-.floating-home-btn {
-    position: fixed; top: 100px; left: 50%; transform: translateX(-50%);
-    background: var(--text-color); color: var(--inverted-text);
-    padding: 10px; width: 40px; height: 40px; display: flex; justify-content: center; align-items: center;
-    font-family: var(--font-heading); font-size: 0.7rem; cursor: pointer; z-index: 1500;
-    opacity: 0; pointer-events: none; transition: opacity 0.3s;
-}
-.floating-home-btn.visible { opacity: 1; pointer-events: all; }
-footer {
-    background: #050505; color: #fff; padding: 80px 40px; text-align: center; margin-top: auto; border-top: 1px solid #333;
-}
-.footer-brand { font-family: var(--font-heading); font-size: 2rem; letter-spacing: 8px; margin-bottom: 20px; text-transform: uppercase; }
-.footer-loc { font-size: 0.8rem; letter-spacing: 4px; color: #666; margin-bottom: 40px; text-transform: uppercase; }
-.footer-links a { color: #999; text-decoration: none; font-size: 0.8rem; letter-spacing: 2px; margin: 0 10px; cursor: pointer; transition: 0.3s; text-transform: uppercase; font-family: var(--font-heading); }
-.footer-links a:hover { color: #fff; }
-.copyright { margin-top: 60px; font-size: 0.6rem; color: #444; letter-spacing: 2px; font-family: var(--font-body); }
-
-/* --- MOBILE --- */
+/* --- MOBILE PRODUCT VIEW OPTIMIZATION --- */
 @media(max-width: 768px) {
-    /* 1. Sistemiamo il titolo se troppo lungo */
-    .brand-title { font-size: 1.4rem; letter-spacing: 3px; }
-    
-    /* 2. Banner più piccolo ma visibile */
-    .hero-banner { 
-        height: 220px; 
-        margin-top: 125px; /* Assicura che esca fuori da sotto l'header */
+    /* 1. Full Screen Overlay Mode */
+    .single-product-view {
+        position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
+        z-index: 5000; /* Sopra a tutto */
+        background: var(--bg-image);
+        margin-top: 0; padding-bottom: 0;
+        overflow-y: auto; /* Permette scroll se necessario */
+        display: none; /* controllato da JS */
     }
+
+    /* 2. Nascondi la barra desktop */
+    .desktop-only { display: none; }
+
+    /* 3. Layout "App" */
+    .product-detail-container { display: flex; flex-direction: column; border: none; height: 100%; }
+
+    /* 4. Immagine Compatta */
+    .detail-image {
+        width: 100%; height: 45vh; /* Occupa poco meno di metà schermo */
+        flex-shrink: 0; border-right: none; border-bottom: var(--glass-border);
+    }
+
+    /* 5. Bottone Mobile Back (X) */
+    .mobile-back-btn {
+        display: flex; justify-content: center; align-items: center;
+        position: absolute; top: 20px; left: 20px;
+        width: 45px; height: 45px;
+        background: var(--inverted-text); 
+        border: 1px solid var(--text-color);
+        color: var(--text-color);
+        cursor: pointer; z-index: 10;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+    .mobile-back-btn span { font-size: 1.2rem; font-weight: bold; }
+
+    /* 6. Info Area Compatta */
+    .detail-info {
+        padding: 25px; 
+        background: var(--glass-bg); /* Assicura leggibilità */
+        flex: 1; /* Prende il resto dello spazio */
+        justify-content: flex-start; /* Testo in alto */
+    }
+
+    .detail-info h2 { font-size: 2rem; margin-bottom: 5px; }
+    .price-tag { font-size: 1.5rem; margin-bottom: 20px; }
+    .divider { margin-bottom: 20px; }
+    .action-buttons { margin-top: auto; /* Spinge i bottoni in fondo se c'è spazio */ gap: 10px; }
+    
+    /* General Mobile Fixes */
+    .main-header { padding: 0 20px; height: 90px; }
+    .brand-title { font-size: 1.4rem; letter-spacing: 3px; }
+    .hero-banner { height: 220px; margin-top: 125px; }
     .hero-text-content h2 { font-size: 1.8rem; letter-spacing: 4px; }
-    
-    /* 3. Layout prodotto */
-    .product-detail-container { flex-direction: column; border: none; background: transparent; }
-    .detail-image { height: 400px; border-right: none; border-bottom: var(--glass-border); margin-bottom: 20px;}
-    .detail-info { padding: 0 20px; background: var(--glass-bg); padding-top: 20px; padding-bottom: 40px;}
-    .detail-info h2 { font-size: 2.2rem; }
-    
-    /* 4. Padding generali */
-    .main-header { padding: 15px 20px; height: 90px; }
+    .product-grid { padding: 0 20px 60px; gap: 15px; }
     .search-overlay { padding: 30px; }
-    .search-input-wrapper input { font-size: 2rem; }
-    .product-grid { padding: 0 20px 80px; gap: 20px; }
 }
