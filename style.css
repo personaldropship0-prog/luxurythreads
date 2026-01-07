@@ -78,7 +78,7 @@ body {
 .card h3 { font-family: var(--font-heading); font-size: 0.9rem; margin-bottom: 5px; text-transform: uppercase; color: var(--text-color); }
 .price { font-family: var(--font-body); font-size: 0.9rem; opacity: 0.8; }
 
-/* --- PRODUCT VIEW (DESKTOP STANDARD) --- */
+/* --- PRODUCT VIEW (DESKTOP) --- */
 .single-product-view { display: none; padding-bottom: 60px; }
 .product-detail-container {
     display: flex; background: var(--glass-bg); border: var(--glass-border);
@@ -86,14 +86,11 @@ body {
 }
 .detail-image { flex: 1; position: relative; border-right: var(--glass-border); }
 .detail-image img { width: 100%; height: 100%; object-fit: cover; display: block; }
-
-/* Tasto X Desktop (nascosto su mobile, vedi sotto) */
 .close-product-btn {
     position: absolute; top: 20px; left: 20px; width: 40px; height: 40px;
     background: var(--inverted-text); color: var(--text-color); border: 1px solid var(--text-color);
     font-size: 1.2rem; cursor: pointer; display: flex; justify-content: center; align-items: center; z-index: 10;
 }
-
 .detail-info { flex: 1; padding: 40px; display: flex; flex-direction: column; justify-content: center; }
 .info-header { margin-bottom: 15px; display: flex; gap: 10px; }
 .mini-badge { font-size: 0.7rem; border: 1px solid var(--text-color); padding: 3px 8px; text-transform: uppercase; font-family: var(--font-heading); }
@@ -106,62 +103,39 @@ body {
 .main-btn { background: var(--text-color); color: var(--inverted-text); }
 .sec-btn { background: transparent; color: var(--text-color); }
 
-/* --- MOBILE SPECIFIC (MODAL POPUP STYLE) --- */
+/* --- MOBILE POPUP STYLE --- */
 @media (max-width: 768px) {
     .main-header { padding: 0 20px; height: 80px; }
     .brand-title { font-size: 1.5rem; }
     #main-container { padding-top: 115px; }
     .hero-banner { height: 200px; }
     
-    /* 1. SFONDO SCURO (BACKDROP) */
     .single-product-view {
         position: fixed; top: 0; left: 0; width: 100%; height: 100%;
         z-index: 5000; 
-        background: rgba(0, 0, 0, 0.6); /* Oscura il resto del sito */
+        background: rgba(0, 0, 0, 0.7); /* Sfondo scuro per focus */
         backdrop-filter: blur(5px);
         margin: 0; padding: 0;
-        
-        /* Flexbox per centrare il box prodotto */
-        display: none; /* Gestito da JS (diventa flex quando attivo) */
-        justify-content: center; align-items: center;
+        display: none; justify-content: center; align-items: center;
     }
     
-    /* 2. CARD PRODOTTO CENTRALE (NON PIÙ FULL SCREEN) */
     .product-detail-container {
         flex-direction: column; 
-        width: 90%; /* Occupa il 90% della larghezza */
-        height: 80%; /* Occupa l'80% dell'altezza */
-        max-height: 600px;
-        background: var(--inverted-text); /* Sfondo solido */
-        border: 1px solid var(--text-color);
+        width: 85%; height: auto; max-height: 80vh; /* Box contenuto */
+        background: var(--inverted-text); border: 1px solid var(--text-color);
         box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-        overflow: hidden; /* Niente scroll della pagina */
     }
     
-    .detail-image {
-        flex: none; height: 45%; width: 100%; 
-        border-right: none; border-bottom: 1px solid #ccc;
-    }
-    
-    .close-product-btn {
-        top: 10px; left: 10px; /* Spostato leggermente */
-        width: 35px; height: 35px; font-size: 1rem;
-    }
+    .detail-image { flex: none; height: 250px; width: 100%; border-right: none; border-bottom: 1px solid #ccc; }
+    .close-product-btn { top: 10px; left: 10px; width: 30px; height: 30px; font-size: 1rem; }
     
     .detail-info {
-        flex: 1; padding: 20px; 
-        justify-content: flex-start;
-        background: var(--inverted-text);
-        color: var(--text-color);
+        flex: 1; padding: 20px; justify-content: flex-start;
+        background: var(--inverted-text); color: var(--text-color);
     }
-    
-    .detail-info h2 { font-size: 1.6rem; margin-bottom: 5px; }
-    .price-big { font-size: 1.3rem; margin-bottom: 15px; }
-    .detail-info p { 
-        font-size: 0.8rem; margin-bottom: 15px; 
-        display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
-    }
-    
+    .detail-info h2 { font-size: 1.4rem; margin-bottom: 5px; }
+    .price-big { font-size: 1.2rem; margin-bottom: 10px; }
+    .detail-info p { font-size: 0.8rem; margin-bottom: 15px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
     .action-buttons { width: 100%; gap: 10px; }
     .buy-btn { padding: 12px; font-size: 0.8rem; }
 }
@@ -172,11 +146,59 @@ footer { background: #111; color: #fff; padding: 40px 20px; text-align: center; 
 .footer-links a { color: #888; text-decoration: none; font-size: 0.8rem; margin: 0 5px; cursor: pointer; }
 .copyright { margin-top: 30px; font-size: 0.7rem; color: #444; }
 
-/* UTILS */
-.search-overlay, .popup-overlay {
-    display: none; position: fixed; inset: 0; background: #fff; z-index: 4000;
-    flex-direction: column; padding: 40px;
+/* --- 1. NUOVA SEARCH BAR (Less Invasive) --- */
+.search-backdrop {
+    display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 3000;
 }
-.search-overlay.active { display: flex; }
-.search-overlay input { font-size: 2rem; border: none; border-bottom: 2px solid #000; width: 100%; outline: none; margin-top: 20px; font-family: var(--font-heading); }
-.close-search-btn { align-self: flex-end; background: none; border: 1px solid #000; padding: 5px 15px; cursor: pointer; }
+.search-bar-container {
+    display: none; position: fixed; top: 150px; left: 50%; transform: translateX(-50%);
+    width: 90%; max-width: 500px;
+    background: var(--inverted-text); border: 1px solid var(--text-color);
+    padding: 20px; z-index: 3001;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+}
+.search-bar-container.active, .search-backdrop.active { display: block; }
+
+.search-header { display: flex; justify-content: space-between; margin-bottom: 15px; font-family: var(--font-heading); font-size: 0.8rem; color: var(--text-color); }
+.search-header button { background: none; border: none; text-decoration: underline; cursor: pointer; color: var(--text-color); }
+.search-bar-container input { width: 100%; border: none; border-bottom: 2px solid var(--text-color); font-family: var(--font-heading); font-size: 1.5rem; padding: 5px 0; outline: none; background: transparent; color: var(--text-color); }
+
+/* --- 2. VIP BOT SOURCING --- */
+.vip-bot-wrapper {
+    position: fixed; bottom: 20px; right: 20px; z-index: 4000;
+    display: flex; flex-direction: column; align-items: flex-end;
+}
+
+.vip-trigger-btn {
+    width: 60px; height: 60px;
+    background: #000; color: #fff; border: none;
+    font-family: var(--font-heading); font-size: 1rem; letter-spacing: 1px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3); cursor: pointer;
+    transition: transform 0.2s;
+}
+.vip-trigger-btn:hover { transform: scale(1.05); }
+
+.vip-chat-window {
+    display: none; /* Nascosto di default */
+    width: 300px; background: #fff; border: 1px solid #000;
+    margin-bottom: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+.vip-chat-window.active { display: block; }
+
+.chat-header {
+    background: #000; color: #fff; padding: 15px;
+    display: flex; justify-content: space-between; align-items: center;
+    font-family: var(--font-heading); letter-spacing: 1px; font-size: 0.9rem;
+}
+.chat-header button { background: none; border: none; color: #fff; cursor: pointer; font-size: 1rem; }
+
+.chat-body { padding: 20px; }
+.chat-body p { font-size: 0.85rem; color: #000; margin-bottom: 15px; line-height: 1.4; }
+.chat-body input {
+    width: 100%; padding: 10px; border: 1px solid #ccc; margin-bottom: 15px;
+    font-family: var(--font-body); font-size: 0.9rem;
+}
+.send-vip-btn {
+    width: 100%; background: #000; color: #fff; padding: 12px; border: none;
+    font-family: var(--font-heading); cursor: pointer; letter-spacing: 1px;
+}
