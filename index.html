@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>LUXURY THREAD | Ultimate Edition</title>
+    <title>LUXURY THREAD | Mobile Edition</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,7 +18,6 @@
     <div class="news-ticker">
         <div class="ticker-content">
             WORLDWIDE SHIPPING ✈ · AUTHENTIC GUARANTEED 100% · SOURCING SERVICE AVAILABLE · DM FOR INQUIRIES · MILAN BASED · TOKYO CONNECTIONS · 
-            WORLDWIDE SHIPPING ✈ · AUTHENTIC GUARANTEED 100% · SOURCING SERVICE AVAILABLE · DM FOR INQUIRIES · 
         </div>
     </div>
 
@@ -34,13 +33,10 @@
             </div>
             <div class="quick-links">
                 <span>TRENDING:</span>
-                <a onclick="quickSearch('Jordan')">JORDAN</a>
-                <a onclick="quickSearch('Yeezy')">YEEZY</a>
-                <a onclick="quickSearch('Hoodie')">HOODIE</a>
-                <a onclick="quickSearch('Chrome Hearts')">CHROME HEARTS</a>
+                <a onclick="quickSearch('Cinture')">CINTURE</a>
+                <a onclick="quickSearch('Portafogli')">PORTAFOGLI</a>
             </div>
         </div>
-        <div class="search-backdrop" onclick="closeSearchOverlay()"></div>
     </div>
 
     <header class="main-header">
@@ -50,19 +46,15 @@
                     <img src="img/logo.png" alt="LT" onerror="this.style.display='none';">
                 </div>
             </div>
-            
             <h1 class="brand-title" onclick="goHome()">LUXURY THREAD</h1>
-
             <div class="header-right">
-                <button class="search-trigger-btn" onclick="openSearchOverlay()">
-                    CERCA
-                </button>
+                <button class="search-trigger-btn" onclick="openSearchOverlay()">CERCA</button>
             </div>
         </div>
     </header>
 
     <main id="home-view" class="content-area">
-        <div class="spacer"></div> <div class="hero-banner">
+        <div class="hero-banner">
             <div class="hero-overlay"></div>
             <div class="hero-text-content">
                 <h2>PREMIUM RESELLER</h2>
@@ -73,11 +65,10 @@
         </div>
 
         <nav class="filters">
-            <button onclick="filterProducts('all')" class="active">TUTTO</button>
-            <button onclick="filterProducts('sneakers')">SNEAKERS</button>
-            <button onclick="filterProducts('hoodies')">HOODIES</button>
-            <button onclick="filterProducts('pants')">PANTS</button>
-            <button onclick="filterProducts('accessories')">ACCESSORIES</button>
+            <button onclick="filterProducts('home')" class="active">HOME</button>
+            <button onclick="filterProducts('cinture')">CINTURE</button>
+            <button onclick="filterProducts('portafogli')">PORTAFOGLI</button>
+            <button onclick="filterProducts('borselli')">BORSELLI</button>
         </nav>
 
         <section id="products-grid" class="product-grid"></section>
@@ -85,37 +76,40 @@
         <div id="no-results" class="no-results-box" style="display:none;">
             <div class="no-results-content">
                 <h2>NESSUN RISULTATO</h2>
-                <p>Usa il servizio VIP Sourcing per trovare il tuo prodotto.</p>
                 <button class="buy-btn main-btn" onclick="openSourcingModal()">RICHIESTA SOURCING</button>
             </div>
         </div>
     </main>
 
-    <section id="single-product-page" class="single-product-view content-area">
-        <div class="spacer"></div>
-        <div class="product-top-bar">
+    <section id="single-product-page" class="single-product-view">
+        
+        <div class="product-top-bar desktop-only">
             <button class="back-link" onclick="goBackToHome()">&lt; TORNA ALLA HOME</button>
         </div>
+
         <div class="product-detail-container">
             <div class="detail-image">
+                <button class="mobile-back-btn" onclick="goBackToHome()">
+                    <span>&#10005;</span> </button>
                 <img id="detail-img" src="" alt="">
             </div>
+            
             <div class="detail-info">
                 <div class="badges-row">
-                    <span id="detail-category" class="badge">CATEGORY</span>
-                    <span class="verified-badge">AUTHENTIC 100%</span>
+                    <span id="detail-category" class="badge">CAT</span>
+                    <span class="verified-badge">AUTHENTIC</span>
                 </div>
+                
                 <h2 id="detail-title">PRODUCT NAME</h2>
                 <div id="detail-price" class="price-tag">€000</div>
+                
                 <div class="divider"></div>
-                <p id="detail-desc">Description goes here.</p>
-                <div class="trust-info">
-                    <span>📦 Double Box Shipping</span>
-                    <span>🔒 Secure Payment</span>
-                </div>
+                
+                <p id="detail-desc">Description.</p>
+                
                 <div class="action-buttons">
-                    <button class="buy-btn main-btn" onclick="contactForProduct('buy')">ACQUISTA (DM)</button>
-                    <button class="buy-btn sec-btn" onclick="contactForProduct('info')">INFO PRODOTTO</button>
+                    <button class="buy-btn main-btn" onclick="contactForProduct('buy')">ACQUISTA ORA</button>
+                    <button class="buy-btn sec-btn" onclick="contactForProduct('info')">INFO</button>
                 </div>
             </div>
         </div>
@@ -126,11 +120,11 @@
             <div class="footer-brand">LUXURY THREAD</div>
             <p class="footer-loc">MILANO / TOKYO</p>
             <div class="footer-links">
-                <a href="https://instagram.com/luxury.thread_" target="_blank">INSTAGRAM</a>
+                <a href="https://instagram.com/luxury.thread_" target="_blank">IG</a>
                 <span class="sep">/</span>
-                <a onclick="openReviewsModal()">RECENSIONI</a>
+                <a onclick="openReviewsModal()">FEEDBACK</a>
                 <span class="sep">/</span>
-                <a onclick="toggleTheme()" id="theme-toggle">THEME</a>
+                <a onclick="toggleTheme()">THEME</a>
             </div>
             <p class="copyright">© 2026 LUXURY THREAD</p>
         </div>
@@ -138,32 +132,25 @@
 
 </div>
 
-<div class="floating-sourcing-btn" onclick="openSourcingModal()">
-    <span>VIP REQUEST</span>
-</div>
-<div class="floating-home-btn" onclick="scrollToTop()">
-    <span>UP</span>
-</div>
+<div class="floating-sourcing-btn" onclick="openSourcingModal()"><span>VIP REQUEST</span></div>
+<div class="floating-home-btn" onclick="scrollToTop()"><span>UP</span></div>
 
 <div id="sourcing-modal" class="popup-overlay">
     <div class="popup-box sourcing-box">
-        <div class="popup-header">
-            <h3>VIP REQUEST</h3>
-            <div class="header-line"></div>
-        </div>
-        <div class="input-group"><input type="text" id="src-model" placeholder="MODELLO DESIDERATO"></div>
+        <div class="popup-header"><h3>VIP REQUEST</h3><div class="header-line"></div></div>
+        <div class="input-group"><input type="text" id="src-model" placeholder="MODELLO"></div>
         <div class="input-group"><input type="text" id="src-size" placeholder="TAGLIA"></div>
         <div class="popup-actions">
-            <button class="buy-btn main-btn" onclick="sendSourcingRequest()">INVIA RICHIESTA</button>
+            <button class="buy-btn main-btn" onclick="sendSourcingRequest()">INVIA</button>
             <button class="close-text-btn" onclick="closeSourcingModal()">CHIUDI</button>
         </div>
     </div>
 </div>
 <div id="reviews-modal" class="popup-overlay">
     <div class="popup-box reviews-box">
-        <div class="popup-header"><h3>CLIENT FEEDBACK</h3><div class="header-line"></div></div>
+        <div class="popup-header"><h3>FEEDBACK</h3><div class="header-line"></div></div>
         <div class="reviews-list">
-            <div class="review-item"><div class="stars">★★★★★</div><p>"Prodotto perfetto."</p><span class="review-author">@matteo.g</span></div>
+            <div class="review-item"><div class="stars">★★★★★</div><p>"Perfetto."</p></div>
         </div>
         <button class="close-text-btn" onclick="closeReviewsModal()">CHIUDI</button>
     </div>
