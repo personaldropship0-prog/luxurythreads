@@ -24,12 +24,13 @@ const products = [
 ];
 
 document.addEventListener("DOMContentLoaded", () => {
-    // FIX: Seleziona visivamente il bottone "Home"
-    const homeBtn = document.querySelector(".filters button");
-    if(homeBtn) homeBtn.classList.add('active');
-
-    // FIX: Carica direttamente i dati Home senza aspettare il click
+    // 1. Forza il rendering Home
     renderProducts(products.filter(p => p.category === 'home'));
+    
+    // 2. Setup Search Input per invio con ENTER
+    document.getElementById('searchInput').addEventListener('keyup', (e) => {
+        if(e.key === 'Enter') performSearch(e.target.value);
+    });
 });
 
 function renderProducts(list) {
@@ -37,7 +38,7 @@ function renderProducts(list) {
     grid.innerHTML = "";
     
     if(list.length === 0) {
-        grid.innerHTML = "<p style='width:100%; text-align:center;'>Nessun prodotto.</p>";
+        grid.innerHTML = "<p style='width:100%; text-align:center; padding: 20px;'>Nessun prodotto trovato.</p>";
         return;
     }
 
@@ -55,22 +56,16 @@ function renderProducts(list) {
 }
 
 function filterProducts(cat) {
-    // Rimuovi classe active da tutti
     document.querySelectorAll('.filters button').forEach(b => b.classList.remove('active'));
-    
-    // Aggiungi active SOLO se l'evento esiste (click utente)
-    if(event && event.target) {
-        event.target.classList.add('active');
-    }
-
+    if(event && event.target) event.target.classList.add('active');
     renderProducts(products.filter(p => p.category === cat));
 }
 
+// --- LOGICA POPUP PRODOTTO ---
 function openProductPage(id) {
     const p = products.find(x => x.id === id);
     if(!p) return;
 
-    // Popola dati
     document.getElementById('detail-img').src = p.img;
     document.getElementById('detail-title').innerText = p.name;
     document.getElementById('detail-price').innerText = `€${p.price}`;
@@ -78,46 +73,68 @@ function openProductPage(id) {
     document.getElementById('detail-category').innerText = p.category;
 
     const prodView = document.getElementById('single-product-page');
-    const homeView = document.getElementById('home-view');
-
-    // MOBILE: Overlay
-    if(window.innerWidth <= 768) {
-        prodView.style.display = 'flex'; // FLEX serve per centrare il popup
-        document.body.style.overflow = 'hidden'; // Blocca scroll sotto
-    } 
-    // DESKTOP: Switch view classico
-    else {
-        homeView.style.display = 'none';
-        prodView.style.display = 'block';
-        window.scrollTo(0,0);
-    }
+    
+    // Apri sempre in modalità "Popup" (gestito da CSS per mobile/desktop)
+    prodView.style.display = 'flex'; // Flex per centrare il popup
+    document.body.style.overflow = 'hidden'; 
 }
 
 function closeProductPage() {
-    const prodView = document.getElementById('single-product-page');
-    const homeView = document.getElementById('home-view');
-    
-    prodView.style.display = 'none';
-    homeView.style.display = 'block';
-    document.body.style.overflow = 'auto'; // Sblocca scroll
+    document.getElementById('single-product-page').style.display = 'none';
+    document.body.style.overflow = 'auto';
 }
 
 function goHome() {
     closeProductPage();
-    // Simula click su Home per resettare filtri
+    closeSearch();
+    filterProducts('home');
     const homeBtn = document.querySelector(".filters button");
-    if(homeBtn) {
-        homeBtn.click();
-    } else {
-        filterProducts('home');
+    if(homeBtn) homeBtn.classList.add('active');
+    window.scrollTo(0,0);
+}
+
+// --- LOGICA SEARCH (NUOVA) ---
+function openSearch() {
+    document.getElementById('search-backdrop').classList.add('active');
+    document.getElementById('search-bar-container').classList.add('active');
+    setTimeout(() => document.getElementById('searchInput').focus(), 100);
+}
+
+function closeSearch() {
+    document.getElementById('search-backdrop').classList.remove('active');
+    document.getElementById('search-bar-container').classList.remove('active');
+}
+
+function performSearch(term) {
+    if(!term) return;
+    const filtered = products.filter(p => p.name.toLowerCase().includes(term.toLowerCase()) || p.category.includes(term.toLowerCase()));
+    
+    closeSearch();
+    closeProductPage(); // Se eravamo in un prodotto, chiudilo
+    
+    // Togli selezione dai filtri
+    document.querySelectorAll('.filters button').forEach(b => b.classList.remove('active'));
+    
+    renderProducts(filtered);
+    window.scrollTo(0, 300); // Scrolla alla griglia
+}
+
+// --- LOGICA VIP BOT ---
+function toggleBot() {
+    const chat = document.getElementById('vip-chat-window');
+    chat.classList.toggle('active');
+}
+
+function sendVipRequest() {
+    const req = document.getElementById('vip-input').value;
+    if(req.trim() !== "") {
+        window.open(`https://ig.me/m/luxury.thread_?text=Richiesta Sourcing VIP: ${req}`);
+        document.getElementById('vip-input').value = ""; // Pulisci
+        toggleBot(); // Chiudi
     }
 }
 
 // UTILS
-function openSearchOverlay() { document.getElementById('search-overlay').classList.add('active'); }
-function closeSearchOverlay() { document.getElementById('search-overlay').classList.remove('active'); }
-function openReviewsModal() { document.getElementById('reviews-modal').style.display = 'flex'; }
-function closeReviewsModal() { document.getElementById('reviews-modal').style.display = 'none'; }
 function contactForProduct(type) {
     const title = document.getElementById('detail-title').innerText;
     window.open(`https://ig.me/m/luxury.thread_?text=${type === 'buy' ? 'Acquisto' : 'Info'}: ${title}`);
