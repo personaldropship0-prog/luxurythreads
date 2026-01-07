@@ -1,33 +1,34 @@
 /* --- CONFIGURAZIONE LUXURY SHARP --- */
 :root {
-    /* Sfondi mantenuti */
     --bg-image: url('img/marmo-white.jpg'); 
     --text-color: #000000;        
     --inverted-text: #ffffff;    
     
-    /* VETRO CRISTALLO (Angoli vivi, bordo sottile) */
-    --glass-bg: rgba(255, 255, 255, 0.7); /* Più trasparente */
-    --glass-border: 1px solid rgba(0, 0, 0, 0.1); /* Bordo Hairline */
-    --glass-shadow: none; /* Rimosso ombre per look piatto/editoriale */
+    /* VETRO/SFONDO SOLIDO PER I FILTRI */
+    --glass-bg: rgba(255, 255, 255, 0.7); 
+    --glass-border: 1px solid rgba(0, 0, 0, 0.1); 
     --blur-amt: 20px;
     
-    /* FONT & DESIGN */
+    /* Colore sfondo solido per i bottoni filtro */
+    --filter-btn-bg: #ffffff; 
+    
     --font-heading: 'Oswald', sans-serif;
     --font-body: 'Inter', sans-serif;
-    --radius: 0px; /* LA CHIAVE: TUTTO RETTANGOLARE */
+    --radius: 0px; 
 }
 
 body.dark-mode {
     --bg-image: url('img/marmo-black.jpg'); 
     --text-color: #ffffff;        
     --inverted-text: #000000;    
-    
     --glass-bg: rgba(0, 0, 0, 0.7);
     --glass-border: 1px solid rgba(255, 255, 255, 0.15);
+    
+    --filter-btn-bg: #1a1a1a;
 }
 
 /* --- BASE --- */
-* { margin:0; padding:0; box-sizing:border-box; border-radius: 0 !important; } /* Forza angoli retti ovunque */
+* { margin:0; padding:0; box-sizing:border-box; border-radius: 0 !important; }
 
 body {
     font-family: var(--font-body); 
@@ -35,15 +36,15 @@ body {
     background-image: var(--bg-image);
     background-size: cover; background-attachment: fixed; background-position: center;
     overflow-x: hidden;
-    /* Smooth transition solo per cambio colore, non per movimento */
     transition: color 0.4s ease; 
 }
 
 .page-wrapper { display: flex; flex-direction: column; min-height: 100vh; }
 .content-area { flex: 1; width: 100%; max-width: 1800px; margin: 0 auto; }
-.spacer { height: 160px; }
+/* Spacer ridotto perché ora c'è il banner sotto */
+.spacer { height: 120px; } 
 
-/* --- TICKER (Stile Nastro Adesivo) --- */
+/* --- TICKER & HEADER (Invariati) --- */
 .news-ticker {
     position: fixed; top: 0; left: 0; width: 100%; height: 35px;
     background: var(--text-color); color: var(--inverted-text);
@@ -52,77 +53,117 @@ body {
 }
 .ticker-content {
     white-space: nowrap; animation: scroll-left 40s linear infinite;
-    font-family: var(--font-heading); font-size: 0.8rem; letter-spacing: 3px; font-weight: 400;
-    text-transform: uppercase;
+    font-family: var(--font-heading); font-size: 0.8rem; letter-spacing: 3px; font-weight: 400; text-transform: uppercase;
 }
 @keyframes scroll-left { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
 
-/* --- HEADER --- */
 .main-header {
     position: fixed; top: 35px; left: 0; width: 100%;
     z-index: 1000; padding: 20px 40px;
     background: var(--glass-bg);
     backdrop-filter: blur(var(--blur-amt)); -webkit-backdrop-filter: blur(var(--blur-amt));
     border-bottom: var(--glass-border);
-    transition: transform 0.3s ease; /* Solo movimento header, no fade in */
+    transition: transform 0.3s ease;
 }
 .main-header.hidden { transform: translateY(-150%); }
-
 .header-content { display: flex; align-items: center; justify-content: space-between; }
-
-/* Logo quadrato stile brutalista */
 .logo-slot {
-    width: 50px; height: 50px; 
-    border: 1px solid var(--text-color);
-    display: flex; align-items: center; justify-content: center;
-    background: rgba(255,255,255,0.1);
-    cursor: pointer;
+    width: 50px; height: 50px; border: 1px solid var(--text-color);
+    display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.1); cursor: pointer;
 }
-.logo-slot img { width: 100%; height: 100%; object-fit: cover; }
-
 .brand-title {
     font-family: var(--font-heading); font-size: 2.2rem; font-weight: 400; 
     letter-spacing: 8px; text-transform: uppercase; cursor: pointer; text-align: center;
-    /* Rimozione glow, testo solido */
 }
-
 .search-trigger-btn {
-    background: transparent; border: 1px solid var(--text-color);
-    color: var(--text-color); padding: 12px 25px;
-    font-family: var(--font-heading); font-size: 0.9rem; letter-spacing: 2px;
-    cursor: pointer; transition: background 0.2s;
+    background: transparent; border: 1px solid var(--text-color); color: var(--text-color); padding: 12px 25px;
+    font-family: var(--font-heading); font-size: 0.9rem; letter-spacing: 2px; cursor: pointer; transition: background 0.2s;
 }
 .search-trigger-btn:hover { background: var(--text-color); color: var(--inverted-text); }
 
-/* --- FILTRI --- */
-.filters { display: flex; justify-content: center; flex-wrap: wrap; gap: 0; padding: 20px; border-bottom: var(--glass-border); margin-bottom: 40px;}
-.filters button {
-    padding: 15px 30px; background: transparent; border: 1px solid transparent;
-    font-family: var(--font-heading); font-size: 0.9rem; font-weight: 300; 
-    color: var(--text-color); cursor: pointer; letter-spacing: 2px;
-    text-transform: uppercase; opacity: 0.5; transition: opacity 0.3s;
+/* --- NEW: HERO BANNER SECTION --- */
+.hero-banner {
+    width: 100%;
+    height: 350px; /* Abbastanza alto da staccare, non full screen */
+    position: relative;
+    /* Usa un'immagine dark/urban di sfondo */
+    background-image: url('https://images.unsplash.com/photo-1486304873000-235643847519?q=80&w=2832&auto=format&fit=crop'); 
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 40px;
+    border-bottom: 1px solid var(--text-color);
 }
-.filters button:hover { opacity: 1; border: 1px solid var(--text-color); }
-.filters button.active { opacity: 1; border-bottom: 2px solid var(--text-color); font-weight: 500;}
 
-/* --- GRID SYSTEM (Statico e Pulito) --- */
+.hero-overlay {
+    position: absolute; inset: 0;
+    background: rgba(0,0,0,0.6); /* Scurisce l'immagine per far leggere il testo */
+}
+
+.hero-text-content {
+    position: relative; z-index: 2;
+    text-align: center; color: #fff; /* Sempre bianco per contrasto col banner scuro */
+}
+
+.hero-text-content h2 {
+    font-family: var(--font-heading); font-size: 3rem; letter-spacing: 10px;
+    font-weight: 400; margin-bottom: 10px;
+}
+.hero-text-content p {
+    font-family: var(--font-heading); font-size: 0.9rem; letter-spacing: 5px; opacity: 0.8;
+}
+.hero-line {
+    width: 60px; height: 2px; background: #fff; margin: 20px auto;
+}
+.hero-sub {
+    font-family: var(--font-body); font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase;
+}
+
+/* --- FILTRI (AGGIORNATI: CASELLE SOLIDE) --- */
+.filters { 
+    display: flex; justify-content: center; flex-wrap: wrap; 
+    gap: 15px; /* Spazio tra le caselle */
+    padding: 0 40px 40px; /* Padding sotto */
+}
+.filters button {
+    padding: 15px 30px; 
+    /* SFONDO OPACO: Ora sono visibili sopra il marmo */
+    background: var(--filter-btn-bg); 
+    border: 1px solid var(--text-color);
+    font-family: var(--font-heading); font-size: 0.9rem; font-weight: 400; 
+    color: var(--text-color); 
+    cursor: pointer; letter-spacing: 2px;
+    text-transform: uppercase; 
+    transition: all 0.3s;
+    min-width: 140px; /* Larghezza minima per uniformità */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05); /* Leggera ombra per profondità */
+}
+.filters button:hover { 
+    transform: translateY(-2px); /* Piccolo lift statico */
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+.filters button.active { 
+    background: var(--text-color); 
+    color: var(--inverted-text); 
+    border-color: var(--text-color);
+}
+
+/* --- GRID SYSTEM --- */
 .product-grid {
     display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 2px; /* Gap minimo per look a griglia stretta */
+    gap: 20px; /* Più spazio tra le card */
     padding: 0 40px 80px;
 }
-
 .card {
     background: var(--glass-bg);
     border: var(--glass-border);
-    cursor: pointer; 
-    /* NESSUNA ANIMAZIONE DI MOVIMENTO */
-    transition: background 0.3s;
-    position: relative;
+    cursor: pointer; transition: background 0.3s; position: relative;
+    /* Ombra leggera sulle card per staccarle dal marmo */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.03); 
 }
-.card:hover {
-    background: var(--text-color); /* Inversione colore stile galleria d'arte */
-}
+.card:hover { background: var(--text-color); }
 .card:hover .card-details h3, .card:hover .price { color: var(--inverted-text); }
 .card:hover .card-img { opacity: 0.9; }
 
@@ -134,11 +175,12 @@ body {
 }
 .price { font-family: var(--font-heading); font-size: 1rem; font-weight: 300; color: var(--text-color); opacity: 0.7;}
 
-/* --- PRODUCT PAGE --- */
+/* --- PRODUCT PAGE & POPUPS (Stessi di prima) --- */
 .single-product-view { display: none; padding-bottom: 80px; }
 .product-top-bar { padding: 0 40px 20px; text-align: left; border-bottom: var(--glass-border); margin-bottom: 40px; }
 .back-link {
-    background: none; border: 1px solid var(--text-color); color: var(--text-color); padding: 10px 20px;
+    background: var(--filter-btn-bg); /* Anche questo bottone ora è solido */
+    border: 1px solid var(--text-color); color: var(--text-color); padding: 10px 20px;
     font-family: var(--font-heading); font-size: 0.8rem; letter-spacing: 2px; cursor: pointer; text-transform: uppercase;
     transition: 0.2s;
 }
@@ -148,19 +190,15 @@ body {
     display: flex; width: 100%; max-width: 1400px; margin: 0 auto; 
     border: var(--glass-border); background: var(--glass-bg);
 }
-
 .detail-image { flex: 1; border-right: var(--glass-border); }
 .detail-image img { width: 100%; height: 100%; object-fit: cover; display: block; }
-
 .detail-info { flex: 1; padding: 60px; display: flex; flex-direction: column; justify-content: center; }
-
 .badges-row { display: flex; gap: 10px; margin-bottom: 20px; }
 .badge, .verified-badge { 
     font-family: var(--font-heading); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; 
     border: 1px solid var(--text-color); padding: 5px 10px; color: var(--text-color);
 }
 .verified-badge { background: var(--text-color); color: var(--inverted-text); }
-
 .detail-info h2 { 
     font-family: var(--font-heading); font-size: 3.5rem; font-weight: 300; 
     margin: 0 0 10px; text-transform: uppercase; letter-spacing: 2px; line-height: 1;
@@ -168,9 +206,7 @@ body {
 .price-tag { font-family: var(--font-heading); font-size: 2rem; font-weight: 400; margin-bottom: 30px; letter-spacing: 1px; }
 .divider { width: 100%; height: 1px; background: var(--text-color); opacity: 0.2; margin-bottom: 30px; }
 .detail-info p { font-family: var(--font-body); font-size: 1rem; line-height: 1.6; opacity: 0.8; margin-bottom: 30px; font-weight: 300; }
-
 .trust-info { display: flex; gap: 20px; font-size: 0.8rem; opacity: 0.7; margin-bottom: 40px; font-family: var(--font-heading); letter-spacing: 1px; text-transform: uppercase;}
-
 .action-buttons { display: flex; gap: 0; }
 .buy-btn {
     flex: 1; padding: 20px; text-transform: uppercase; letter-spacing: 3px; font-size: 0.9rem; font-family: var(--font-heading);
@@ -181,33 +217,28 @@ body {
 .sec-btn { background: transparent; color: var(--text-color); border-left: none; }
 .sec-btn:hover { background: rgba(0,0,0,0.05); }
 
-/* --- SEARCH OVERLAY --- */
+/* --- SEARCH & MODALS --- */
 .search-overlay {
     position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
-    background: var(--inverted-text); z-index: 3000; /* Sfondo solido per pulizia massima */
+    background: var(--inverted-text); z-index: 3000;
     opacity: 0; visibility: hidden; transition: opacity 0.3s ease;
     display: flex; flex-direction: column; padding: 60px;
 }
 .search-overlay.active { opacity: 1; visibility: visible; }
 .dark-mode .search-overlay { background: #000; }
-
 .search-top-row { display: flex; justify-content: space-between; margin-bottom: 80px; align-items: center;}
 .search-brand { font-family: var(--font-heading); font-size: 1.5rem; letter-spacing: 5px; text-transform: uppercase; }
 .close-search-btn { background: none; border: 1px solid var(--text-color); padding: 10px 20px; font-family: var(--font-heading); letter-spacing: 2px; cursor: pointer; color: var(--text-color); text-transform: uppercase; transition: 0.2s; }
 .close-search-btn:hover { background: var(--text-color); color: var(--inverted-text); }
-
 .search-input-wrapper { display: flex; align-items: flex-end; border-bottom: 2px solid var(--text-color); padding-bottom: 15px; margin-bottom: 40px; }
 .search-icon { font-family: var(--font-heading); font-size: 1rem; letter-spacing: 2px; margin-right: 20px; opacity: 0.6; }
 .search-input-wrapper input {
     width: 100%; border: none; background: transparent; font-family: var(--font-heading);
-    font-size: 3rem; font-weight: 300; text-transform: uppercase; color: var(--text-color); outline: none;
-    letter-spacing: 2px;
+    font-size: 3rem; font-weight: 300; text-transform: uppercase; color: var(--text-color); outline: none; letter-spacing: 2px;
 }
 .quick-links { display: flex; flex-wrap: wrap; gap: 20px; font-family: var(--font-heading); letter-spacing: 1px; text-transform: uppercase; }
 .quick-links a { text-decoration: none; border-bottom: 1px solid transparent; cursor: pointer; color: var(--text-color); opacity: 0.5; transition: 0.2s; }
 .quick-links a:hover { opacity: 1; border-color: var(--text-color); }
-
-/* --- MODALS & EXTRAS --- */
 .popup-overlay {
     display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.8);
     z-index: 4000; justify-content: center; align-items: center;
@@ -220,29 +251,22 @@ body {
 .popup-header { margin-bottom: 30px; text-align: center; }
 .popup-header h3 { font-family: var(--font-heading); font-weight: 400; letter-spacing: 5px; font-size: 1.5rem; }
 .header-line { width: 40px; height: 1px; background: var(--text-color); margin: 15px auto 0; }
-
 .input-group input {
     width: 100%; padding: 15px 0; margin-bottom: 25px; border: none; border-bottom: 1px solid var(--text-color);
     background: transparent; font-family: var(--font-heading); letter-spacing: 2px; outline: none; font-size: 1.1rem; color: var(--text-color);
 }
 .close-text-btn { background: none; border: none; border-bottom: 1px solid var(--text-color); padding-bottom: 2px; cursor: pointer; color: var(--text-color); font-family: var(--font-heading); letter-spacing: 2px; margin-top: 15px; text-transform: uppercase; }
-
-/* Review List */
 .reviews-list { margin-bottom: 30px; border-top: 1px solid rgba(0,0,0,0.1); }
 .review-item { padding: 20px 0; border-bottom: 1px solid rgba(0,0,0,0.1); }
 .review-item .stars { letter-spacing: 5px; font-size: 0.8rem; margin-bottom: 5px; }
-
-/* Floating Buttons (Quadrati) */
 .floating-sourcing-btn {
     position: fixed; bottom: 30px; right: 30px;
     background: var(--text-color); color: var(--inverted-text);
     padding: 15px 25px; 
     font-family: var(--font-heading); letter-spacing: 2px; font-size: 0.8rem; 
-    cursor: pointer; z-index: 1500; border: 1px solid var(--text-color);
-    transition: 0.3s;
+    cursor: pointer; z-index: 1500; border: 1px solid var(--text-color); transition: 0.3s;
 }
 .floating-sourcing-btn:hover { background: var(--inverted-text); color: var(--text-color); }
-
 .floating-home-btn {
     position: fixed; top: 100px; left: 50%; transform: translateX(-50%);
     background: var(--text-color); color: var(--inverted-text);
@@ -251,8 +275,6 @@ body {
     opacity: 0; pointer-events: none; transition: opacity 0.3s;
 }
 .floating-home-btn.visible { opacity: 1; pointer-events: all; }
-
-/* FOOTER */
 footer {
     background: #050505; color: #fff; padding: 80px 40px; text-align: center; margin-top: auto; border-top: 1px solid #333;
 }
@@ -265,6 +287,8 @@ footer {
 /* MOBILE */
 @media(max-width: 768px) {
     .brand-title { font-size: 1.5rem; letter-spacing: 4px; }
+    .hero-banner { height: 250px; }
+    .hero-text-content h2 { font-size: 2rem; letter-spacing: 5px; }
     .product-detail-container { flex-direction: column; border: none; background: transparent; }
     .detail-image { height: 400px; border-right: none; border-bottom: var(--glass-border); margin-bottom: 20px;}
     .detail-info { padding: 0 20px; background: var(--glass-bg); padding-top: 20px; padding-bottom: 40px;}
@@ -272,5 +296,5 @@ footer {
     .main-header { padding: 15px 20px; }
     .search-overlay { padding: 30px; }
     .search-input-wrapper input { font-size: 2rem; }
-    .product-grid { padding: 0 20px 80px; gap: 20px; } /* Più gap su mobile per touch */
+    .product-grid { padding: 0 20px 80px; gap: 20px; }
 }
