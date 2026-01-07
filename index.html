@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>LUXURY THREAD | Mobile Edition</title>
+    <title>LUXURY THREAD | Final Mobile</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,25 +17,7 @@
 
     <div class="news-ticker">
         <div class="ticker-content">
-            WORLDWIDE SHIPPING ✈ · AUTHENTIC GUARANTEED 100% · SOURCING SERVICE AVAILABLE · DM FOR INQUIRIES · MILAN BASED · TOKYO CONNECTIONS · 
-        </div>
-    </div>
-
-    <div id="search-overlay" class="search-overlay">
-        <div class="search-overlay-content">
-            <div class="search-top-row">
-                <span class="search-brand">LT SEARCH</span>
-                <button class="close-search-btn" onclick="closeSearchOverlay()">CHIUDI [X]</button>
-            </div>
-            <div class="search-input-wrapper">
-                <span class="search-icon">SEARCH</span>
-                <input type="text" id="searchInput" placeholder="DIGITA QUI..." autocomplete="off">
-            </div>
-            <div class="quick-links">
-                <span>TRENDING:</span>
-                <a onclick="quickSearch('Cinture')">CINTURE</a>
-                <a onclick="quickSearch('Portafogli')">PORTAFOGLI</a>
-            </div>
+            WORLDWIDE SHIPPING ✈ · AUTHENTIC GUARANTEED 100% · SOURCING SERVICE AVAILABLE · DM FOR INQUIRIES · 
         </div>
     </div>
 
@@ -53,105 +35,77 @@
         </div>
     </header>
 
-    <main id="home-view" class="content-area">
-        <div class="hero-banner">
-            <div class="hero-overlay"></div>
-            <div class="hero-text-content">
-                <h2>PREMIUM RESELLER</h2>
-                <p>MILAN / TOKYO / NEW YORK</p>
-                <div class="hero-line"></div>
-                <span class="hero-sub">SOURCING RARO &amp; ESCLUSIVO</span>
-            </div>
-        </div>
-
-        <nav class="filters">
-            <button onclick="filterProducts('home')" class="active">HOME</button>
-            <button onclick="filterProducts('cinture')">CINTURE</button>
-            <button onclick="filterProducts('portafogli')">PORTAFOGLI</button>
-            <button onclick="filterProducts('borselli')">BORSELLI</button>
-        </nav>
-
-        <section id="products-grid" class="product-grid"></section>
-
-        <div id="no-results" class="no-results-box" style="display:none;">
-            <div class="no-results-content">
-                <h2>NESSUN RISULTATO</h2>
-                <button class="buy-btn main-btn" onclick="openSourcingModal()">RICHIESTA SOURCING</button>
-            </div>
-        </div>
-    </main>
-
-    <section id="single-product-page" class="single-product-view">
+    <div id="main-container">
         
-        <div class="product-top-bar desktop-only">
-            <button class="back-link" onclick="goBackToHome()">&lt; TORNA ALLA HOME</button>
-        </div>
-
-        <div class="product-detail-container">
-            <div class="detail-image">
-                <button class="mobile-back-btn" onclick="goBackToHome()">
-                    <span>&#10005;</span> </button>
-                <img id="detail-img" src="" alt="">
-            </div>
-            
-            <div class="detail-info">
-                <div class="badges-row">
-                    <span id="detail-category" class="badge">CAT</span>
-                    <span class="verified-badge">AUTHENTIC</span>
-                </div>
-                
-                <h2 id="detail-title">PRODUCT NAME</h2>
-                <div id="detail-price" class="price-tag">€000</div>
-                
-                <div class="divider"></div>
-                
-                <p id="detail-desc">Description.</p>
-                
-                <div class="action-buttons">
-                    <button class="buy-btn main-btn" onclick="contactForProduct('buy')">ACQUISTA ORA</button>
-                    <button class="buy-btn sec-btn" onclick="contactForProduct('info')">INFO</button>
+        <main id="home-view" class="content-area">
+            <div class="hero-banner">
+                <div class="hero-overlay"></div>
+                <div class="hero-text-content">
+                    <h2>RESELLER</h2>
+                    <div class="hero-line"></div>
+                    <p>MILAN / TOKYO</p>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <footer>
+            <nav class="filters">
+                <button onclick="filterProducts('home')" class="active">HOME</button>
+                <button onclick="filterProducts('cinture')">CINTURE</button>
+                <button onclick="filterProducts('portafogli')">PORTAFOGLI</button>
+                <button onclick="filterProducts('borselli')">BORSELLI</button>
+            </nav>
+
+            <section id="products-grid" class="product-grid"></section>
+        </main>
+
+        <section id="single-product-page" class="single-product-view">
+            <div class="product-detail-container">
+                
+                <div class="detail-image">
+                    <button class="close-product-btn" onclick="closeProductPage()">&#10005;</button>
+                    <img id="detail-img" src="" alt="">
+                </div>
+                
+                <div class="detail-info">
+                    <div class="info-header">
+                        <span id="detail-category" class="mini-badge">CAT</span>
+                        <span class="mini-badge verified">100% AUTHENTIC</span>
+                    </div>
+                    
+                    <h2 id="detail-title">NOME PRODOTTO</h2>
+                    <div id="detail-price" class="price-big">€000</div>
+                    
+                    <p id="detail-desc">Descrizione prodotto.</p>
+                    
+                    <div class="action-buttons">
+                        <button class="buy-btn main-btn" onclick="contactForProduct('buy')">ACQUISTA</button>
+                        <button class="buy-btn sec-btn" onclick="contactForProduct('info')">INFO</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div> <footer>
         <div class="footer-content">
             <div class="footer-brand">LUXURY THREAD</div>
-            <p class="footer-loc">MILANO / TOKYO</p>
             <div class="footer-links">
-                <a href="https://instagram.com/luxury.thread_" target="_blank">IG</a>
-                <span class="sep">/</span>
-                <a onclick="openReviewsModal()">FEEDBACK</a>
-                <span class="sep">/</span>
+                <a onclick="openReviewsModal()">FEEDBACK</a> / 
                 <a onclick="toggleTheme()">THEME</a>
             </div>
-            <p class="copyright">© 2026 LUXURY THREAD</p>
+            <p class="copyright">© 2026 LT MILANO</p>
         </div>
     </footer>
 
 </div>
 
-<div class="floating-sourcing-btn" onclick="openSourcingModal()"><span>VIP REQUEST</span></div>
-<div class="floating-home-btn" onclick="scrollToTop()"><span>UP</span></div>
-
-<div id="sourcing-modal" class="popup-overlay">
-    <div class="popup-box sourcing-box">
-        <div class="popup-header"><h3>VIP REQUEST</h3><div class="header-line"></div></div>
-        <div class="input-group"><input type="text" id="src-model" placeholder="MODELLO"></div>
-        <div class="input-group"><input type="text" id="src-size" placeholder="TAGLIA"></div>
-        <div class="popup-actions">
-            <button class="buy-btn main-btn" onclick="sendSourcingRequest()">INVIA</button>
-            <button class="close-text-btn" onclick="closeSourcingModal()">CHIUDI</button>
-        </div>
-    </div>
+<div id="search-overlay" class="search-overlay">
+    <button class="close-search-btn" onclick="closeSearchOverlay()">CHIUDI</button>
+    <input type="text" id="searchInput" placeholder="CERCA..." autocomplete="off">
 </div>
+
 <div id="reviews-modal" class="popup-overlay">
     <div class="popup-box reviews-box">
-        <div class="popup-header"><h3>FEEDBACK</h3><div class="header-line"></div></div>
-        <div class="reviews-list">
-            <div class="review-item"><div class="stars">★★★★★</div><p>"Perfetto."</p></div>
-        </div>
+        <h3>FEEDBACK CLIENTI</h3>
+        <p>"Servizio impeccabile." - @cliente</p>
         <button class="close-text-btn" onclick="closeReviewsModal()">CHIUDI</button>
     </div>
 </div>
