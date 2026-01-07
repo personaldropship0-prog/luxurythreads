@@ -62,8 +62,16 @@
     </header>
 
     <main id="home-view" class="content-area">
-        <div class="spacer"></div>
-        
+        <div class="spacer"></div> <div class="hero-banner">
+            <div class="hero-overlay"></div>
+            <div class="hero-text-content">
+                <h2>PREMIUM RESELLER</h2>
+                <p>MILAN / TOKYO / NEW YORK</p>
+                <div class="hero-line"></div>
+                <span class="hero-sub">SOURCING RARO &amp; ESCLUSIVO</span>
+            </div>
+        </div>
+
         <nav class="filters">
             <button onclick="filterProducts('all')" class="active">TUTTO</button>
             <button onclick="filterProducts('sneakers')">SNEAKERS</button>
@@ -85,11 +93,9 @@
 
     <section id="single-product-page" class="single-product-view content-area">
         <div class="spacer"></div>
-        
         <div class="product-top-bar">
             <button class="back-link" onclick="goBackToHome()">&lt; TORNA ALLA HOME</button>
         </div>
-
         <div class="product-detail-container">
             <div class="detail-image">
                 <img id="detail-img" src="" alt="">
@@ -99,19 +105,14 @@
                     <span id="detail-category" class="badge">CATEGORY</span>
                     <span class="verified-badge">AUTHENTIC 100%</span>
                 </div>
-                
                 <h2 id="detail-title">PRODUCT NAME</h2>
                 <div id="detail-price" class="price-tag">€000</div>
-                
                 <div class="divider"></div>
-                
                 <p id="detail-desc">Description goes here.</p>
-                
                 <div class="trust-info">
                     <span>📦 Double Box Shipping</span>
                     <span>🔒 Secure Payment</span>
                 </div>
-
                 <div class="action-buttons">
                     <button class="buy-btn main-btn" onclick="contactForProduct('buy')">ACQUISTA (DM)</button>
                     <button class="buy-btn sec-btn" onclick="contactForProduct('info')">INFO PRODOTTO</button>
@@ -140,7 +141,6 @@
 <div class="floating-sourcing-btn" onclick="openSourcingModal()">
     <span>VIP REQUEST</span>
 </div>
-
 <div class="floating-home-btn" onclick="scrollToTop()">
     <span>UP</span>
 </div>
@@ -151,41 +151,19 @@
             <h3>VIP REQUEST</h3>
             <div class="header-line"></div>
         </div>
-        <div class="input-group">
-            <input type="text" id="src-model" placeholder="MODELLO DESIDERATO">
-        </div>
-        <div class="input-group">
-            <input type="text" id="src-size" placeholder="TAGLIA">
-        </div>
+        <div class="input-group"><input type="text" id="src-model" placeholder="MODELLO DESIDERATO"></div>
+        <div class="input-group"><input type="text" id="src-size" placeholder="TAGLIA"></div>
         <div class="popup-actions">
             <button class="buy-btn main-btn" onclick="sendSourcingRequest()">INVIA RICHIESTA</button>
             <button class="close-text-btn" onclick="closeSourcingModal()">CHIUDI</button>
         </div>
     </div>
 </div>
-
 <div id="reviews-modal" class="popup-overlay">
     <div class="popup-box reviews-box">
-        <div class="popup-header">
-            <h3>CLIENT FEEDBACK</h3>
-            <div class="header-line"></div>
-        </div>
+        <div class="popup-header"><h3>CLIENT FEEDBACK</h3><div class="header-line"></div></div>
         <div class="reviews-list">
-            <div class="review-item">
-                <div class="stars">★★★★★</div>
-                <p>"Prodotto perfetto, servizio eccellente."</p>
-                <span class="review-author">@matteo.g</span>
-            </div>
-            <div class="review-item">
-                <div class="stars">★★★★★</div>
-                <p>"Spedizione rapidissima."</p>
-                <span class="review-author">@luca_snkrs</span>
-            </div>
-            <div class="review-item">
-                <div class="stars">★★★★★</div>
-                <p>"Trovata in 2 giorni. Grazie!"</p>
-                <span class="review-author">@alessia.v</span>
-            </div>
+            <div class="review-item"><div class="stars">★★★★★</div><p>"Prodotto perfetto."</p><span class="review-author">@matteo.g</span></div>
         </div>
         <button class="close-text-btn" onclick="closeReviewsModal()">CHIUDI</button>
     </div>
